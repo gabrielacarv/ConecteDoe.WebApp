@@ -1,0 +1,182 @@
+﻿@{
+    ViewData["Title"] = "Cadastrar Usuário";
+}
+
+@using ConecteDoe.Dominio.Entities
+@model Usuario
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/CadastrarUsuario.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/ConecteDoe.ico" type="image/svg+xml">
+    <title>Conecte Doe</title>
+</head>
+
+<body>
+
+    <!--
+      - #HEADER
+    -->
+
+    <header>
+
+        <div class="container">
+
+            <a href="#" class="logo">
+                <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/LogoConecteDoe.png" width="180px" alt="ConecteDoe logo">
+            </a>
+
+            <div class="navbar-wrapper">
+
+                <button class="navbar-menu-btn" data-navbar-toggle-btn>
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+
+                <nav class="navbar" data-navbar>
+
+                    <ul class="navbar-list">
+                        @*<i asp-controller="Logar" asp-action="Index" class="fas fa-solid fa-arrow-left"></i>*@
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg>
+                        <li class="nav-item">
+                            <a asp-controller="Logar" asp-action="Index" class="nav-link">Voltar</a>
+                        </li>
+                    </ul>
+
+                    @* <a asp-controller="Logar" asp-action="Index"><button class="btn btn-primary">Cadastrar </button></a> *@
+
+                </nav>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="forms-container">
+                <div class="signin-signup">
+                    <form asp-action="InserirConfirmar" asp-controller="Usuario" method="POST" class="sign-up-form">
+                        <div>
+                            <h3 class="">Informações Pessoais</h3>
+                            <div class="infoPessoal">
+                                <div class="input-field">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" placeholder="Nome" required asp-for="Nome" />
+                                </div>
+                                <div class="input-field">
+                                    <i></i>
+                                    <input type="date" required asp-for="DataNascimento" />
+                                </div>
+                                <div class="input-field">
+                                    <i class="fas fa-solid fa-id-card"></i>
+                                    <input type="text" placeholder="CPF" required asp-for="CPF" />
+                                </div>
+                                <div class="input-field">
+                                    <i class="fas fa-solid fa-phone"></i>
+                                    <input type="tel" placeholder="Telefone" required asp-for="Telefone" />
+                                </div>
+                                <div class="opcao">
+                                    <select asp-for="Sexo" class="input-field-s">
+                                        <option value="Selecione" disabled selected>Sexo</option>
+                                        <option value="F">Feminino</option>
+                                        <option value="M">Masculino</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>Endereço</h3>
+                            <div class="enderecoDados">
+                                <div class="input-field">
+                                    <i></i>
+                                    <input type="text" placeholder="Rua" required asp-for="Endereco.Logradouro" />
+                                </div>
+                                <div class="input-field">
+                                    <i></i>
+                                    <input type="text" inputmode="numeric" placeholder="Número" pattern="\d*" required asp-for="Endereco.Numero" />
+                                </div>
+                                <div class="input-field">
+                                    <i></i>
+                                    <input type="text" inputmode="text" placeholder="CEP" required asp-for="Endereco.CEP" />
+                                </div>
+                                <div class="input-field">
+                                    <i></i>
+                                    <input type="text" placeholder="Bairro" required asp-for="Endereco.Bairro" />
+                                </div>
+                                <div class="input-field">
+                                    <i></i>
+                                    <input type="text" placeholder="Complemento" required asp-for="Endereco.Complemento" />
+                                </div>
+                                <div class="input-field">
+                                    <i></i>
+                                    <input type="text" placeholder="Cidade" required asp-for="Endereco.Cidade" />
+                                </div>
+
+                                @*<input type="text" placeholder="Estado" required asp-for="Endereco.Estado" />*@
+                                <select >
+                                    <option disabled selected>Estado</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                    <option value="EX">Estrangeiro</option>
+                                </select>
+
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3>Dados para acesso</h3>
+                            <div class="dadosAcesso">
+                                <div class="input-field">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" placeholder="E-mail" required asp-for="Email" />
+                                </div>
+                                <div class="input-field">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" placeholder="Senha" required asp-for="Senha" />
+                                </div>
+                                @*<div class="input-field">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" placeholder="Confirmar senha" required asp-for="ConfirmarSenha" />
+                                </div>*@
+                                <input type="submit" class="btn" value="Cadastre-se" />
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+    </section>
+    
+</body>

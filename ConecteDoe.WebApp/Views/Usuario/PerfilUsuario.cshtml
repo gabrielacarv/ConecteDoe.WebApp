@@ -1,0 +1,193 @@
+﻿@using ConecteDoe.Dominio.Entities
+@model Usuario
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecte Doe</title>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+
+    <!--
+      - favicon link
+    -->
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/ConecteDoe.ico" type="image/svg+xml">
+
+    <!--
+      - custom css link
+    -->
+    <link rel="stylesheet" href="~/css/PerfilUsuario.css" asp-append-version="true" />
+
+    <!--
+      - google font link
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+    <header>
+        <div class="container">
+
+            <a href="#" class="logo">
+                <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/LogoConecteDoe.png" width="180px" alt="ConecteDoe logo">
+            </a>
+            <div class="navbar-wrapper">
+                <button class="navbar-menu-btn" data-navbar-toggle-btn>
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+                <nav class="navbar" data-navbar>
+                    <ul class="navbar-list">
+                        <li class="nav-item">
+                            <a href="#home" class="nav-link">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#about" class="nav-link">Instituições</a>
+                        </li>
+                        @* <li class="nav-item">
+                        <a href="#features" class="nav-link"></a>
+                        </li> *@
+                        @* <li class="nav-item">
+                        <a href="#" class="nav-link"></a>
+                        </li> *@
+                        @* <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contato</a>
+                        </li> *@
+
+                        <a asp-controller="Usuario" asp-action="PerfilUsuario" class="logo">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512">
+                                <!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <style>
+                                    svg {
+                                        fill: #abed1a
+                                    }</style>
+                                <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                            </svg>
+                        </a>
+
+                        <a asp-controller="Logar" asp-action="Index">
+                            <svg id="IconSair" xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 512 512">
+                                <!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <style>
+                                    svg {
+                                        fill: #abed1a
+                                    }</style>
+                                <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
+                            </svg>
+                        </a>
+                        @* <a asp-controller="Logar" asp-action="Index" class="nav-link">
+                        Sair
+                        </a> *@
+                    </ul>
+
+                    @* <a asp-controller="Logar" asp-action="Index"><button class="btn btn-primary">Sair</button></a> *@
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="titulo-user-perfil">
+                <h1>Perfil Usuário</h1>
+            </div>
+            <div class="forms-container">
+                <div class="container-user-perfil">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" /></svg>
+                </div>
+                <div class="signin-signup">
+                    <form asp-action="InserirConfirmar" asp-controller="Usuario" method="POST" class="sign-up-form">                                
+                        <div>
+                            <h3 class="">Informações Pessoais</h3>
+                            <div class="infoPessoal">
+                                <label>Nome</label>
+                                <div class="input-field">                           
+                                    <input type="text" asp-for="Nome" readonly />
+                                </div>
+                                <label>Data de nascimento</label>
+                                <div class="input-field">
+                                    <input type="text" asp-for="DataNascimento" readonly />
+                                </div>
+                                <label>CPF</label>
+                                <div class="input-field">
+                                    <input type="text"  asp-for="CPF" readonly />
+                                </div>
+                                <label>Telefone</label>
+                                <div class="input-field">
+                                    <input type="tel" asp-for="Telefone" readonly />
+                                </div>
+                                <label>Sexo</label>
+                                <div class="input-field">
+                                    <input type="text" asp-for="Sexo" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3>Endereço</h3>
+                            <div class="enderecoDados">
+                                <label>Rua</label>
+                                <div class="input-field">
+                                    <input type="text"  asp-for="Endereco.Logradouro" readonly />
+                                </div>
+                                <label>Número</label>
+                                <div class="input-field">
+                                    <input type="text"  asp-for="Endereco.Numero" readonly />
+                                </div>
+                                <label>CEP</label>
+                                <div class="input-field">
+                                    <input type="text"  asp-for="Endereco.CEP" readonly />
+                                </div>
+                                <label>Bairro</label>
+                                <div class="input-field">
+                                    <input type="text"  asp-for="Endereco.Bairro" readonly />
+                                </div>
+                                <label>Complemento</label>
+                                <div class="input-field">
+                                    <input type="text"  asp-for="Endereco.Complemento" readonly />
+                                </div>
+                                <label>Cidade</label>
+                                <div class="input-field">
+                                    <input type="text"  asp-for="Endereco.Cidade" readonly />
+                                </div>
+
+                                <label>Estado</label>
+                                <div class="input-field">
+                                    <input type="text"  asp-for="Endereco.Estado" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3>Dados para acesso</h3>
+                            <div class="dadosAcesso">
+                                <label>E-mail</label>
+                                <div class="input-field">
+                                    <input type="email" required asp-for="Email" />
+                                </div>
+                                <label>Senha</label>
+                                <div class="input-field">
+                                    <input type="password" required asp-for="Senha" />
+                                </div>
+                                @*<div class="input-field">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" placeholder="Confirmar senha" required asp-for="ConfirmarSenha" />
+                                </div>*@
+                                
+                            </div>
+
+                            <div class="btn-edicao">
+                                <input type="submit" class="btn" value="Editar" />
+                                <input type="submit" class="btn" value="Cadastre-se" />
+                            </div>
+
+                        </div>
+                        
+                    </form>
+
+                </div>
+            </div>
+    </section>
+</body>
