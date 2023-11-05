@@ -238,7 +238,7 @@ header {
     }
 
 .navbar-list {
-    padding-left: 10px; 
+    padding-left: 10px;
 }
 
 .nav-item:not(:last-child) {
@@ -363,7 +363,7 @@ select {
         padding: 4px;
     }
 
-    /*.enderecoDados i {
+/*.enderecoDados i {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -392,8 +392,8 @@ select {
         color: #acacac;
     }*/
 
-.btn-edicao{
-    display:flex;
+.btn-edicao {
+    display: flex;
     flex-direction: row;
     gap: 10px;
 }
@@ -563,6 +563,7 @@ select {
         max-width: 550px;
         margin-inline: auto;
     }
+
     .container2 {
         max-width: 550px;
         margin-inline: auto;
@@ -639,6 +640,7 @@ select {
     .container {
         max-width: 740px;
     }
+
     .container2 {
         max-width: 550px;
     }
@@ -692,6 +694,7 @@ select {
     .container {
         max-width: 950px;
     }
+
     .container2 {
         max-width: 550px;
     }
@@ -887,6 +890,7 @@ select {
     .container {
         max-width: 1150px;
     }
+
     .container2 {
         max-width: 550px;
     }
@@ -919,12 +923,12 @@ select {
 
 .container-editar {
     display: flex;
-    justify-content:flex-end;
+    justify-content: flex-end;
     align-items: center;
     gap: 5px;
     margin-right: 20px;
 }
 
 #editarButton2:hover {
-    color:#abed1a;
+    color: #abed1a;
 }

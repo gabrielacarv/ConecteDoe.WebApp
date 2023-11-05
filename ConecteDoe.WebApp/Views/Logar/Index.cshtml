@@ -18,7 +18,7 @@
     <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form asp-action="Autenticar" asp-controller="Logar" class="sign-in-form" method="post">
+                <form asp-action="Autenticar" asp-controller="Logar" class="sign-in-form" id="login-form" method="post">
                     <h2 class="title">Entrar</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
@@ -30,7 +30,7 @@
                     </div>
                     <div>
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Manter conectado</label>
+                        <label class="form-check-label" for="exampleCheck1" name="keep-logged-in">Manter conectado</label>
                     </div>
                     <input type="submit" value="Entrar" class="btn solid" />
                     <p class="social-text">Ou entre com as mídias sociais</p>
@@ -115,6 +115,7 @@
 
         sign_in_btn.addEventListener("click", () => { container.classList.remove("sign-up-mode"); });
     </script>
+
 </body>
 </html>
 

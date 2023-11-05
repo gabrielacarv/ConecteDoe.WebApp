@@ -11,6 +11,8 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
             builder.ToTable("Usuario", Constantes.Schema);
             builder.HasKey(u => u.UsuarioId);
 
+            //builder.Ignore(u => u.UsuarioId);
+
             builder
                 .Property(u => u.UsuarioId)
                 .UseIdentityColumn()

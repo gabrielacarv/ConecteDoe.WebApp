@@ -1,4 +1,5 @@
 using ConecteDoe.Dados;
+using ConecteDoe.WebApp;
 using ConecteDoe.WebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureAuthentication();
 
 var app = builder.Build();
 

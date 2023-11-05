@@ -22,7 +22,7 @@
       - custom js link
     -->
     <script src="~/js/PerfilUsuario.js"></script>
-    <link rel="stylesheet" href="~/css/PerfilUsuario.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/PerfilInstituicao.css" asp-append-version="true" />
 
     <!--
       - google font link
@@ -50,7 +50,7 @@
                 <nav class="navbar" data-navbar>
                     <ul class="navbar-list">
                         <li class="nav-item">
-                            <a asp-controller="Plataforma" asp-action="Index" class="nav-link">Início</a>
+                            <a href="#home" class="nav-link">Início</a>
                         </li>
                         <li class="nav-item">
                             <a href="#about" class="nav-link">Instituições</a>
@@ -83,7 +83,7 @@
     <section>
         <div class="container2">
             <div class="titulo-user-perfil">
-                <h1>Perfil Usuário</h1>
+                <h1>Perfil Instituição</h1>
             </div>
             <div class="forms-container">
                 
@@ -97,7 +97,7 @@
                     
                 </div>
                 <div class="signin-signup">
-                    <form asp-controller="Usuario" asp-action="SalvarEdicao" method="POST" class="sign-up-form">
+                    <form asp-controller="" asp-action="" method="POST" class="sign-up-form">
                         <div>
                             <h3 class="">Informações Pessoais</h3>
                             <div class="infoPessoal">

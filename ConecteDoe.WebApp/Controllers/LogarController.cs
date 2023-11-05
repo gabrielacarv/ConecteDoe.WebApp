@@ -1,12 +1,34 @@
 ﻿using ConecteDoe.Dados;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace ConecteDoe.WebApp.Controllers
 {
     public class LogarController : Controller
     {
         private Contexto db = new Contexto();
+
+        //public async Task<IActionResult> Autenticar(string email, string senha)
+        //{
+        //    var usuario = await db.Usuario.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
+
+        //    if (usuario != null)
+        //    {
+        //        // Autenticação bem-sucedida
+        //        // Você pode adicionar o usuário à sessão ou fornecer um token de autenticação aqui
+        //        return RedirectToAction("Index", "Plataforma");
+        //    }
+        //    else
+        //    {
+        //        // Falha na autenticação
+        //        ModelState.AddModelError(string.Empty, "Nome de usuário ou senha inválidos.");
+        //        return View();
+        //    }
+        //}
 
         public async Task<IActionResult> Autenticar(string email, string senha)
         {
@@ -15,8 +37,24 @@ namespace ConecteDoe.WebApp.Controllers
             if (usuario != null)
             {
                 // Autenticação bem-sucedida
-                // Você pode adicionar o usuário à sessão ou fornecer um token de autenticação aqui
-                return RedirectToAction("Index", "Plataforma");
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, usuario.Nome), // Substitua com o campo de nome real do usuário
+                    new Claim(ClaimTypes.Email, usuario.Email), // Substitua com o campo de email do usuário
+                    // Você pode adicionar outras informações do usuário, se necessário
+                    new Claim(ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString())
+
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true, // Se deseja manter o usuário logado permanentemente ou até logout
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                return RedirectToAction("Index", "Plataforma"); // Redirecione para a página desejada após o login
             }
             else
             {
@@ -25,6 +63,13 @@ namespace ConecteDoe.WebApp.Controllers
                 return View();
             }
         }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home"); // Redirecione para a página inicial ou outra página após o logout         
+        }
+
 
         public IActionResult Index()
         {
