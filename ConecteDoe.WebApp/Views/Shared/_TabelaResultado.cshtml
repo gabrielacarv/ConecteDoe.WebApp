@@ -1,0 +1,48 @@
+﻿@using ConecteDoe.Dominio.Entities
+@model List<Usuario>
+
+<table class="table table-striped table-sm">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Data de Nasc.</th>
+            <th>Sexo</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="centraliza-coluna">
+                    @item.UsuarioId
+                </td>
+                <td class="centraliza-coluna">
+                    @item.Nome
+                </td>
+                <td class="centraliza-coluna">
+                    @item.DataNascimento.ToShortDateString()
+                </td>
+                <td class="centraliza-coluna">
+                    @item.Sexo
+                </td>
+                <td class="centraliza-coluna">
+                    @item.CPF
+                </td>
+                <td class="centraliza-coluna">
+                    @item.Telefone
+                </td>
+                <td class="centraliza-coluna">
+                    @item.Email
+                </td>
+                <td class="centraliza-coluna">
+                    <!-- Seus botões de ação ou ações aqui -->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

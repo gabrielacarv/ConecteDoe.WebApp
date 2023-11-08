@@ -19,6 +19,21 @@ namespace ConecteDoe.WebApp.Controllers
             return View();
         }
 
+        public IActionResult Excluir(int usuarioId)
+        {
+            var usuario = db.Usuario.FirstOrDefault(f => f.UsuarioId == usuarioId);
+
+            var enderecoID = usuario.EnderecoId;
+
+            var endereco = db.Endereco.FirstOrDefault(f => f.EnderecoId == enderecoID);
+
+            db.Endereco.Remove(endereco);
+            db.Usuario.Remove(usuario);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Administracao");
+        }
+
         [Authorize]
         public IActionResult PerfilUsuario()
         {
@@ -26,10 +41,10 @@ namespace ConecteDoe.WebApp.Controllers
             //var email = "teste@gmail.com";
             //var senha = "teste";
 
-            var userName = User.Identity.Name;
+            //var userName = User.Identity.Name;
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
 
-            var usuario = db.Usuario.FirstOrDefault(u => u.Email == userEmail && u.Nome == userName);
+            var usuario = db.Usuario.FirstOrDefault(u => u.Email == userEmail);
 
             var EnderecoID = usuario.EnderecoId;
 

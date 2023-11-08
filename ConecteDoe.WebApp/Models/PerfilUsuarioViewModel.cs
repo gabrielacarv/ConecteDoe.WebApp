@@ -5,7 +5,7 @@ namespace ConecteDoe.WebApp.Models
 {
     public class PerfilUsuarioViewModel
     {
-        public required Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; }
         public Endereco Endereco { get; set; }
     }
 }

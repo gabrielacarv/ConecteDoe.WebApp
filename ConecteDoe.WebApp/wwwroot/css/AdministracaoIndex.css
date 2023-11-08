@@ -87,8 +87,7 @@ button {
 }
 
 textarea,
-input,
-select {
+input {
     font: inherit;
     background: none;
     border: none;
@@ -134,11 +133,13 @@ body {
     \*-----------------------------------*/
 
 .container {
-    padding: 0 15px;
+    padding: 0 5px;
 }
 
-.container2 {
-    padding: 0 15px;
+.forms-container {
+    background-color: #edeef1;
+    padding: 5px;
+    border-radius: 18px;
 }
 
 .h1,
@@ -193,9 +194,6 @@ body {
 }
 
 
-
-
-
 /*-----------------------------------*\
      * #HEADER
     \*-----------------------------------*/
@@ -238,7 +236,7 @@ header {
     }
 
 .navbar-list {
-    padding-left: 10px; 
+    padding-left: 10px;
 }
 
 .nav-item:not(:last-child) {
@@ -273,143 +271,89 @@ header {
 }
 
 
-/*-----------------------------------*\
-     * #FOMULARIO
-    \*-----------------------------------*/
 
-.forms-container {
-    background-color: whitesmoke;
-    padding: 20px;
-    border-radius: 15px;
+/*TABELA
+*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.btn {
-    background-color: #abed1a;
-    border: none;
-    outline: none;
-    height: 49px;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin: 10px 0;
+.header_fixed {
+    max-height: 100vh;
+    width: 100%;
+    overflow: auto;
+    border: 1px solid #dddddd;
+}
+
+    .header_fixed thead th {
+        position: sticky;
+        top: 0;
+        background-color: black;
+        color: #e6e7e8;
+        font-size: 15px;
+    }
+
+th,
+td {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+
+    td img {
+        height: 60px;
+        width: 60px;
+        border-radius: 100%;
+        border: 5px solid #e6e7e8;
+    }
+
+tr:nth-child(even) {
+    /*background-color: #dddddd;*/
+    background-color: #edeef1;
+}
+
+tr:nth-child(odd) {
+    background-color: #edeef1;
+}
+
+tr:hover td {
+    color: #44b478;
     cursor: pointer;
-    transition: 0.5s;
+    background-color: #ffffff;
 }
 
-    .btn:hover {
-        background-color: #88bd15;
-    }
-
-.signin-signup {
-}
-
-.infoPessoal {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-top: 5px;
-}
-
-    .infoPessoal input, option {
-        padding: 4px;
-    }
-
-
-/*.input-field i {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding-left: 10px;
-    text-align: center;
-    color: #acacac;
-}*/
-
-.input-field {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: #e6e6e6;
-    border-radius: 5px;
-    padding: 2px;
-}
-
-select {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: #e6e6e6;
-    border-radius: 5px;
-    padding: 9px;
-    padding-right: 55px;
-    outline: none;
+td button {
     border: none;
+    padding: 7px 20px;
+    border-radius: 20px;
+    background-color: black;
+    color: #e6e7e8;
 }
 
-.sign-up-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+::-webkit-scrollbar {
+    width: 6px;
 }
 
-.enderecoDados {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-top: 5px;
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
-    .enderecoDados input, option {
-        padding: 4px;
-    }
-
-    /*.enderecoDados i {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding-left: 10px;
-        text-align: center;
-        color: #acacac;
-    }*/
-
-.dadosAcesso {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-top: 5px;
+::-webkit-scrollbar-thumb {
+ 
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
-    .dadosAcesso input, option {
-        padding: 4px;
-    }
-
-/*    .dadosAcesso i {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding-left: 10px;
-        text-align: center;
-        color: #acacac;
-    }*/
-
-.btn-edicao{
-    display:flex;
-    flex-direction: row;
-    gap: 10px;
+.centraliza-coluna {
+    text-align: center;
 }
-
-.container-user-perfil, .titulo-user-perfil {
-    display: flex;
-    justify-content: center;
-    padding: 25px;
-}
-
 
 
 /*-----------------------------------*\
      * #GO TO TOP
     \*-----------------------------------*/
-
 .go-top {
     position: fixed;
     bottom: 30px;
@@ -435,91 +379,6 @@ select {
         visibility: visible;
         pointer-events: all;
     }
-
-
-/*-----------------------------------*\
-     * #FOOTER
-    \*-----------------------------------*/
-
-footer {
-    background: white;
-    /*background: var(--white-2);*/
-}
-
-.footer-top {
-    padding: 80px 0 50px;
-}
-
-.footer-brand {
-    margin-bottom: 20px;
-}
-
-footer .logo {
-    margin-bottom: 30px;
-}
-
-.footer-text {
-    color: var(--rythm);
-    font-size: var(--fs-6);
-    margin-bottom: 20px;
-}
-
-.social-list {
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
-}
-
-.social-link {
-    color: var(--rythm);
-    font-size: var(--fs-4);
-    margin-bottom: 10px;
-}
-
-    .social-link:is(:hover, :focus) {
-        color: var(--french-rose);
-    }
-
-.footer-link-list:not(:last-child) {
-    margin-bottom: 30px;
-}
-
-.footer-link-list .link-title {
-    margin-bottom: 15px;
-}
-
-.footer-link {
-    color: var(--cool-gray);
-    font-size: var(--fs-6);
-    margin-bottom: 10px;
-    max-width: 150px;
-}
-
-    .footer-link:is(:hover, :focus) {
-        color: var(--french-rose);
-    }
-
-.footer-bottom {
-    padding: 20px 15px;
-    border-top: 1px solid hsla(0, 0%, 18%, 0.2);
-}
-
-.copyright {
-    color: var(--cool-gray);
-    text-align: center;
-    font-size: var(--fs-6);
-}
-
-    .copyright a {
-        display: inline-block;
-        color: var(--cool-gray);
-    }
-
-        .copyright a:is(:hover, :focus) {
-            color: var(--french-rose);
-        }
-
-
 
 
 
@@ -650,6 +509,7 @@ footer .logo {
         max-width: 550px;
         margin-inline: auto;
     }
+
     .container2 {
         max-width: 550px;
         margin-inline: auto;
@@ -726,6 +586,7 @@ footer .logo {
     .container {
         max-width: 740px;
     }
+
     .container2 {
         max-width: 550px;
     }
@@ -779,6 +640,7 @@ footer .logo {
     .container {
         max-width: 950px;
     }
+
     .container2 {
         max-width: 550px;
     }
@@ -974,6 +836,7 @@ footer .logo {
     .container {
         max-width: 1150px;
     }
+
     .container2 {
         max-width: 550px;
     }
@@ -1006,12 +869,12 @@ footer .logo {
 
 .container-editar {
     display: flex;
-    justify-content:flex-end;
+    justify-content: flex-end;
     align-items: center;
     gap: 5px;
     margin-right: 20px;
 }
 
 #editarButton2:hover {
-    color:#abed1a;
+    color: #abed1a;
 }
