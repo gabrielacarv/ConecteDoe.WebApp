@@ -10,5 +10,10 @@ namespace ConecteDoe.WebApp.Controllers
         {
             return View();
         }
+
+        public IActionResult FeedInstituicao()
+        {
+            return View();
+        }
     }
 }
