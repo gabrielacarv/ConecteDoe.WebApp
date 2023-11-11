@@ -390,6 +390,11 @@ select {
         color: #acacac;
     }
 
+.swal2-confirm {
+    border: none !important;
+    box-shadow: none !important;
+}
+
 /*-----------------------------------*\
      * #RESPONSIVE
     \*-----------------------------------*/

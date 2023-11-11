@@ -11,6 +11,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/CadastrarUsuario.css" asp-append-version="true" />
+    <script src="~/js/CadastrarUsuario.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.all.min.js"></script>
+
+    @*SCRIPT PARA VALIDACAO CPF*@
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- jQuery e Inputmask (usados para a máscara de CPF) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/ConecteDoe.ico" type="image/svg+xml">
     <title>Conecte Doe</title>
@@ -74,11 +91,11 @@
                                 </div>
                                 <div class="input-field">
                                     <i class="fas fa-solid fa-id-card"></i>
-                                    <input type="text" placeholder="CPF" required asp-for="CPF" />
+                                    <input type="text" id="cpf" name="cpf" placeholder="CPF" required asp-for="CPF" maxlength="14"/>
                                 </div>
                                 <div class="input-field">
                                     <i class="fas fa-solid fa-phone"></i>
-                                    <input type="tel" placeholder="Telefone" required asp-for="Telefone" />
+                                    <input type="text" id="telefone" name="telefone" placeholder="Telefone" maxlength="15" required asp-for="Telefone" />
                                 </div>
                                 <div class="opcao">
                                     <select asp-for="Sexo" class="input-field-s">
@@ -94,31 +111,31 @@
                             <div class="enderecoDados">
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" placeholder="Rua" required asp-for="Endereco.Logradouro" />
+                                    <input type="text" id="rua" name="rua" placeholder="Rua" required asp-for="Endereco.Logradouro" />
                                 </div>
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" inputmode="numeric" placeholder="Número" pattern="\d*" required asp-for="Endereco.Numero" />
+                                    <input type="text" id="numero" name="numero" inputmode="numeric" placeholder="Número" pattern="\d*" required asp-for="Endereco.Numero" />
                                 </div>
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" inputmode="text" placeholder="CEP" required asp-for="Endereco.CEP" />
+                                    <input type="text" id="cep" name="cep" inputmode="text" placeholder="CEP" required asp-for="Endereco.CEP" onblur="pesquisacep(this.value)" maxlength="9"/>
                                 </div>
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" placeholder="Bairro" required asp-for="Endereco.Bairro" />
+                                    <input type="text" id="bairro" name="bairro" placeholder="Bairro" required asp-for="Endereco.Bairro" />
                                 </div>
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" placeholder="Complemento" required asp-for="Endereco.Complemento" />
+                                    <input type="text" id="complemento" name="complemento" placeholder="Complemento" required asp-for="Endereco.Complemento" />
                                 </div>
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" placeholder="Cidade" required asp-for="Endereco.Cidade" />
+                                    <input type="text" id="cidade" name="cidade" placeholder="Cidade" required asp-for="Endereco.Cidade" />
                                 </div>
 
                                 @*<input type="text" placeholder="Estado" required asp-for="Endereco.Estado" />*@
-                                <select asp-for="Endereco.Estado">
+                                <select asp-for="Endereco.Estado" id="estado" name="estado">
                                     <option disabled selected>Estado</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
@@ -178,5 +195,4 @@
                 </div>
             </div>
     </section>
-    
 </body>
