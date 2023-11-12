@@ -272,9 +272,132 @@ header {
 
 
 
+/*-----------------------------------*\
+     * #CARD
+    \*-----------------------------------*/
+
+.card-conteudo {
+    background-color: #e6e7e8;
+    border-radius: 25px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-container{
+    display: flex;
+    flex-direction:column;
+    gap: 25px;
+}
+
+.card-dados-principal{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+
+.card-dados-principal img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+    .card-dados-principal .texto-superior {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .card-dados-principal .localidade {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+section {
+    margin: 0;
+    padding: 0;
+    background-image: url('https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/formaPrincipalCorTema.png'); /* Substitua pelo caminho correto para a sua imagem */
+    background-size: 60%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.texto-Para-Limitar{
+    text-align: justify;
+}
+
+
+
+/*-----------------------------------*\
+     * #PAGINACAO
+    \*-----------------------------------*/
+
+.container-pagination {
+    padding: 20px;
+    border-radius: 8px;
+    column-gap: 12px;
+
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-pagination,
+.button,
+.links,
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    border: none;
+}
+
+    .button i {
+        pointer-events: none;
+    }
+
+    .button:disabled {
+        color: #b3b3b3;
+        pointer-events: none;
+    }
+
+.button,
+.link {
+    height: 45px;
+    width: 45px;
+    font-size: 20px;
+    color: #666666;
+    background-color: #f2f2f2;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.links {
+    column-gap: 12px;
+}
+
+.link {
+    font-weight: 500;
+    text-decoration: none;
+}
+
+    .button:hover,
+    .link:hover {
+        color: #fff;
+        background: #abed1a;
+    }
+
+    .link.active {
+        color: #fff;
+        background: #abed1a;
+    }
+
 /*TABELA
 */
-
 /*table {
     width: 100%;
     border-collapse: collapse;
@@ -311,8 +434,8 @@ td {
     }
 
 tr:nth-child(even) {*/
-    /*background-color: #dddddd;*/
-    /*background-color: #edeef1;
+/*background-color: #dddddd;*/
+/*background-color: #edeef1;
 }
 
 tr:nth-child(odd) {
@@ -348,8 +471,6 @@ td button {
 .centraliza-coluna {
     text-align: center;
 }*/
-
-
 /*-----------------------------------*\
      * #GO TO TOP
     \*-----------------------------------*/
