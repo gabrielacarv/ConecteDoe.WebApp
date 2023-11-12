@@ -111,31 +111,31 @@
                             <div class="enderecoDados">
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" id="rua" name="rua" placeholder="Rua" required asp-for="Endereco.Logradouro" />
+                                    <input type="text" id="rua" placeholder="Rua" required asp-for="Endereco.Logradouro"  />
                                 </div>
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" id="numero" name="numero" inputmode="numeric" placeholder="Número" pattern="\d*" required asp-for="Endereco.Numero" />
+                                    <input type="text" id="numero" inputmode="numeric" placeholder="Número" pattern="\d*" required asp-for="Endereco.Numero"  />
                                 </div>
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" id="cep" name="cep" inputmode="text" placeholder="CEP" required asp-for="Endereco.CEP" onblur="pesquisacep(this.value)" maxlength="9"/>
+                                    <input type="text" id="cep" inputmode="text" placeholder="CEP" required onblur="pesquisacep(this.value)" maxlength="9" asp-for="Endereco.CEP"  />
                                 </div>
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" id="bairro" name="bairro" placeholder="Bairro" required asp-for="Endereco.Bairro" />
+                                    <input type="text" id="bairro" placeholder="Bairro" required asp-for="Endereco.Bairro"  />
                                 </div>
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" id="complemento" name="complemento" placeholder="Complemento" required asp-for="Endereco.Complemento" />
+                                    <input type="text" id="complemento" placeholder="Complemento" required asp-for="Endereco.Complemento"  />
                                 </div>
                                 <div class="input-field">
                                     <i></i>
-                                    <input type="text" id="cidade" name="cidade" placeholder="Cidade" required asp-for="Endereco.Cidade" />
+                                    <input type="text" id="cidade" placeholder="Cidade" required asp-for="Endereco.Cidade"  />
                                 </div>
 
                                 @*<input type="text" placeholder="Estado" required asp-for="Endereco.Estado" />*@
-                                <select asp-for="Endereco.Estado" id="estado" name="estado">
+                                <select id="estado" asp-for="Endereco.Estado" >
                                     <option disabled selected>Estado</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
