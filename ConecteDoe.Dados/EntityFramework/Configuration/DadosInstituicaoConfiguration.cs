@@ -8,19 +8,24 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
     {
         public void Configure(EntityTypeBuilder<DadosInstituicao> builder)
         {
-            builder.ToTable("Usuario", Constantes.Schema);
+            builder.ToTable("DadosInstituicao", Constantes.Schema);
             builder.HasKey(d => d.DadosInstituicaoId);
 
             builder
                 .Property(d => d.DadosInstituicaoId)
                 .UseIdentityColumn()
-                .HasColumnName("Id")
+                .HasColumnName("DadosInstituicaoId")
                 .HasColumnType("int");
 
             builder
                 .Property(d => d.Coordenador)
                 .HasColumnName("Coordenador")
-                .HasColumnType("varchar(255)");
+                .HasColumnType("varchar(100)");
+
+            builder
+                .Property(d => d.Categoria)
+                .HasColumnName("Categoria")
+                .HasColumnType("varchar(100)");
 
             builder
                 .Property(d => d.DataCriacao)
@@ -36,6 +41,21 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
                 .Property(d => d.Causa)
                 .HasColumnName("Causa")
                 .HasColumnType("varchar");
+
+            builder
+                .Property(u => u.InstituicaoId)
+                .HasColumnName("InstituicaoId")
+                .HasColumnType("int");
+
+            builder
+                .Property(u => u.Imagem)
+                .HasColumnName("Imagem")
+                .HasColumnType("varbinary(max)");
+
+            builder
+                .HasOne(u => u.Instituicao)
+                .WithMany()
+                .HasForeignKey(u => u.InstituicaoId);
         }
     }
 }

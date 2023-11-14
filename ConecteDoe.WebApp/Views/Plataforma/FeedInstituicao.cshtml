@@ -80,7 +80,7 @@
         <div class="container">
             @using (Html.BeginForm("Busca", "Administracao", FormMethod.Get))
             {
-                <div class="form-group">
+                <div class="container-busca">
                     <input type="text" name="searchTerm" placeholder="Pesquisa" />
                     <button type="submit">Buscar</button>
                 </div>
@@ -90,7 +90,8 @@
                     {
                         <div class="card-conteudo">
                             <div class="card-dados-principal">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT85VbZ8wHdLOLkr2OyuBOOZ4WgeFMMvORLejAuM_WHipG5GMNGzL8V-a5F7I2L9PUQlSI&usqp=CAU">
+                            @*<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT85VbZ8wHdLOLkr2OyuBOOZ4WgeFMMvORLejAuM_WHipG5GMNGzL8V-a5F7I2L9PUQlSI&usqp=CAU">*@
+                            <img src="data:image/png;base64,@Convert.ToBase64String(item.Imagem)" alt="Imagem do Usuário" />
                                 <div class="texto-superior">
                                     <h1>Nome Instituicao</h1>
                                     <p>Categoria</p>

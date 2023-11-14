@@ -1,5 +1,5 @@
 ﻿@using ConecteDoe.WebApp.Models
-@model PerfilUsuarioViewModel
+@model PerfilInstituicaoViewModel
 
 
 <head>
@@ -103,27 +103,19 @@
                             <div class="infoPessoal">
                                 <label>Nome</label>
                                 <div class="input-field">                           
-                                    <input type="text" asp-for="Usuario.Nome" readonly />
+                                    <input type="text" asp-for="Instituicao.RazaoSocial" readonly />
                                 </div>
-                                <label>Data de nascimento</label>
-                                <div class="input-field">
-                                    <input type="text" asp-for="Usuario.DataNascimento" readonly value="@Model.Usuario.DataNascimento.ToString("dd/MM/yyyy")" />
-                                </div>
+                                <label>Data de criação</label>
+                                @*<div class="input-field">
+                                    <input type="text" asp-for="DadosInstituicao.DataCriacao" readonly value="@Model.DadosInstituicao.DataCriacao.ToString("dd/MM/yyyy")" />
+                                </div>*@
                                 <label>CPF</label>
                                 <div class="input-field">
-                                    <input type="text"  asp-for="Usuario.CPF" readonly />
+                                    <input type="text" asp-for="Instituicao.CNPJ" readonly />
                                 </div>
                                 <label>Telefone</label>
                                 <div class="input-field">
-                                    <input type="text" asp-for="Usuario.Telefone" readonly />
-                                </div>
-                                <label>Sexo</label>
-                                <div class="">
-                                    <select asp-for="Usuario.Sexo" class="input-field-s">
-                                        <option value="Selecione" disabled selected>Sexo</option>
-                                        <option value="F">Feminino</option>
-                                        <option value="M">Masculino</option>
-                                    </select>
+                                    <input type="text" asp-for="Instituicao.Telefone" readonly />
                                 </div>
                             </div>
                         </div>
@@ -197,11 +189,11 @@
                             <div class="dadosAcesso">
                                 <label>E-mail</label>
                                 <div class="input-field">
-                                    <input type="email" required asp-for="Usuario.Email" readonly" />
+                                    <input type="email" required asp-for="Instituicao.Email" readonly" />
                                 </div>
                                 <label>Senha</label>
                                 <div class="input-field">
-                                    <input type="text" required asp-for="Usuario.Senha" readonly />
+                                    <input type="text" required asp-for="Instituicao.Senha" readonly />
                                 </div>                                
                             </div>
 

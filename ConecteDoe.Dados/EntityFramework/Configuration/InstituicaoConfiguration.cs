@@ -20,7 +20,7 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
             builder
                 .Property(i => i.InstituicaoId)
                 .UseIdentityColumn()
-                .HasColumnName("Id")
+                .HasColumnName("InstituicaoId")
                 .HasColumnType("int");
 
             builder
@@ -30,14 +30,9 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
 
             builder
                 .Property(i => i.CNPJ)
-                .HasColumnName("RazaoSocial")
-                .HasColumnType("varchar(14)");
-
-            builder
-                .Property(i => i.EnderecoId)
-                .HasColumnName("EnderecoId")
-                .HasColumnType("int");
-
+                .HasColumnName("CNPJ")
+                .HasColumnType("varchar(18)");
+          
             builder
                 .Property(i => i.Telefone)
                 .HasColumnName("Telefone")
@@ -54,19 +49,19 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
                 .HasColumnType("varchar(255)");
 
             builder
-               .Property(i => i.InstituicaoId)
-               .HasColumnName("EnderecoId")
-               .HasColumnType("int");
+                .Property(i => i.EnderecoId)
+                .HasColumnName("EnderecoId")
+                .HasColumnType("int");
+
+            builder
+               .Property(u => u.Imagem)
+               .HasColumnName("Imagem")
+               .HasColumnType("varbinary(max)");
 
             builder
                 .HasOne(u => u.Endereco)
                 .WithMany()
                 .HasForeignKey(u => u.EnderecoId);
-
-            builder
-                .HasOne(u => u.DadosInstituicao)
-                .WithMany()
-                .HasForeignKey(u => u.DadosInstituicaoId);
         }
     }
 }

@@ -20,5 +20,6 @@ namespace ConecteDoe.Dominio.Entities
         public string Email { get; set; }
         public string Senha { get; set; }
         public int EnderecoId { get; set; }
+        public byte[] Imagem { get; set; }
     }
 }

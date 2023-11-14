@@ -16,8 +16,7 @@ namespace ConecteDoe.Dominio.Entities
         public string Telefone { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
-        public DadosInstituicao DadosInstituicao { get; set; }
         public int EnderecoId { get; set; }
-        public int DadosInstituicaoId { get; set; }
+        public byte[] Imagem { get; set; }
     }
 }

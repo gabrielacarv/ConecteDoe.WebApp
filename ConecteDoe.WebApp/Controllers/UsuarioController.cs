@@ -61,9 +61,17 @@ namespace ConecteDoe.WebApp.Controllers
 
 
         [HttpPost]
-        public IActionResult InserirConfirmar(Usuario usuario)
+        public IActionResult InserirConfirmar(Usuario usuario, IFormFile imagem)
         {
             db.Usuario.Add(usuario);
+            if (imagem != null && imagem.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    imagem.CopyTo(ms);
+                    usuario.Imagem = ms.ToArray();
+                }
+            }
             db.SaveChanges();
             return RedirectToAction("Index", "Plataforma");
         }

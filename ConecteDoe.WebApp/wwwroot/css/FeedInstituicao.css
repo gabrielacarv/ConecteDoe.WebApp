@@ -271,11 +271,17 @@ header {
 }
 
 
+/*-----------------------------------*\
+     * #BUSCAR
+    \*-----------------------------------*/
+.container-busca {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
 
 /*-----------------------------------*\
      * #CARD
     \*-----------------------------------*/
-
 .card-conteudo {
     background-color: #e6e7e8;
     border-radius: 25px;
@@ -316,14 +322,14 @@ header {
         gap: 10px;
     }
 
-section {
+/*section {
     margin: 0;
     padding: 0;
-    background-image: url('https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/formaPrincipalCorTema.png'); /* Substitua pelo caminho correto para a sua imagem */
-    background-size: 60%;
+    background-image: url('https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/formaPrincipalCorTema.png');*/ /* Substitua pelo caminho correto para a sua imagem */
+    /*background-size: 60%;
     background-attachment: fixed;
     background-repeat: no-repeat;
-}
+}*/
 
 .texto-Para-Limitar{
     text-align: justify;

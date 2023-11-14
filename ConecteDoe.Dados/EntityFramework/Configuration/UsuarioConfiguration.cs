@@ -65,6 +65,11 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
                 .HasOne(u => u.Endereco)
                 .WithMany()
                 .HasForeignKey(u => u.EnderecoId);
+
+            builder
+                .Property(u => u.Imagem)
+                .HasColumnName("Imagem")
+                .HasColumnType("varbinary(max)");
         }
     }
 }

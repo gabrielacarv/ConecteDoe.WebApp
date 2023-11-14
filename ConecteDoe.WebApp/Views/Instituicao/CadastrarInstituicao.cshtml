@@ -60,9 +60,11 @@
     <div class="container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form asp-action="InserirConfirmar" asp-controller="Usuario" method="POST" class="sign-up-form">
+                <form asp-action="InserirConfirmar" asp-controller="Instituicao" enctype="multipart/form-data" method="POST" class="sign-up-form">
                     <div>
                         <h3 class="">Informações Institucional</h3>
+                        <label for="imagem">Escolha uma imagem:</label>
+                        <input type="file" id="imagem" name="Imagem" accept="image/*" />
                         <div class="infoPessoal">                          
                             <div class="input-field">
                                 <i class="fas fa-solid fa-building"></i>
@@ -107,7 +109,7 @@
                             </div>
 
                             @*<input type="text" placeholder="Estado" required asp-for="Endereco.Estado" />*@
-                            <select class="input-field-s">
+                            <select class="input-field-s" asp-for="Endereco.Estado">
                                 <option disabled selected>Estado</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
@@ -163,5 +165,3 @@
             </div>
         </div>
 </body>
-
-
