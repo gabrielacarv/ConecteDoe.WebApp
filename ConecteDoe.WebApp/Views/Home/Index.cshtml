@@ -1,451 +1,179 @@
-﻿@{
-    ViewData["Title"] = "Início";
-}
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecte Doe</title>
-
-    <!--
-      - favicon link
-    -->
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/ConecteDoe.ico" type="image/svg+xml">
-
-    <!--
-      - custom css link
-    -->
-    <link rel="stylesheet" href="~/css/HomeIndex.css" asp-append-version="true" />
-    <script src="~/js/HomeIndex.js" asp-append-version="true"></script>
-    <!--
-      - google font link
-    -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-
-<body id="top">
-
-    <!--
-      - #HEADER
-    -->
-
-    <header>
-
-        <div class="container">
-
-            <a href="#" class="logo">
-                <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/LogoConecteDoe.png" width="180px" alt="ConecteDoe logo">
-            </a>
-
-            <div class="navbar-wrapper">
-
-                <button class="navbar-menu-btn" data-navbar-toggle-btn>
-                    <ion-icon name="menu-outline"></ion-icon>
-                </button>
-
-                <nav class="navbar" data-navbar>
-
-                    <ul class="navbar-list">
-
-                        <li class="nav-item">
-                            <a href="#home" class="nav-link">Home</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#about" class="nav-link">Como Participar</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#features" class="nav-link">Nosso Trabalho</a>
-                        </li>
-
-                     
-                        <li class="nav-item">
-                            <a asp-controller="Administracao" asp-action="Index" class="nav-link">Contato</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a asp-controller="Logar" asp-action="Index" class="nav-link">Entrar</a>
-                        </li>
-                    </ul>
-
-                    @* <a asp-controller="Logar" asp-action="Index"><button class="btn btn-primary">Cadastrar </button></a> *@
-
-                </nav>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-
-
-
-    <main>
-
-        <article>
-
-            <!--
-              - #HERO
-            -->
-
-            <section class="hero" id="home">
-                <div class="container">
-
-                    <div class="hero-content">
-
-                        <h1 class="h1 hero-title">Conecte Doe</h1>
-
-                        <p class="hero-text">
-                            Conectando pessoas e propósitos!
-                            Juntos fazendo a diferença.
-                        </p>
-
-                        <a asp-controller="Logar" asp-action="Index"><button class="btn btn-primary">Participar</button></a>
-                        
-
-                    </div>
-
-                    <div class="hero-banner">
-                        <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/bannerPrincipalFreepik.png" alt="shape" class="bannerPrincipal">
-                    </div>
-
-                </div>
-
-                <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/formaPrincipalCorTema.png" alt="shape" class="shape-content">
-            </section>
-
-
-
-
-
-            <!--
-              - #ABOUT
-            -->
-
-            <section class="about" id="about">
-                
-                <div class="container">
-                    
-                    <div class="about-top">
-                        <br />
-                        <br />
-                        <h2 class="h2 section-title">O que fazemos</h2>
-
-                        <p class="section-text">
-                            Somos uma plataforma voltada para ajudar instituições de caridade e doadores, proporcionando uma maneira mais rápida e fácil de receber e realizar doações. Nosso objetivo é tornar essas ações rápidas, fáceis e seguras, fazendo com que ambas as partes saiam satisfeitas.
-                        </p>
-
-                        <ul class="about-list">
-
-                            <li>
-                                <div class="about-card">
-
-                                    <div class="card-icon">
-                                        <ion-icon name="briefcase-outline"></ion-icon>
-                                    </div>
-
-                                    <h3 class="h3 card-title">Forma rápida e eficiente</h3>
-
-                                    <p class="card-text">
-                                        Faça ou receba sua doação através de PIX diretamente, recebendo um comprovante após realizar ou receber a doação.
-                                    </p>
-
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="about-card">
-
-                                    <div class="card-icon">
-                                        <ion-icon name="chatbubbles-outline"></ion-icon>
-                                    </div>
-
-                                    <h3 class="h3 card-title">Fácil visualização</h3>
-
-                                    <p class="card-text">
-                                        Dentro da plataforma, você pode visualizar como a instituição funciona e também ver feedbacks de outras pessoas que doaram para a instituição em questão.
-                                    </p>
-
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="about-card">
-
-                                    <div class="card-icon">
-                                        <ion-icon name="rocket-outline"></ion-icon>
-                                    </div>
-
-                                    <h3 class="h3 card-title">Cadastro gratuito</h3>
-
-                                    <p class="card-text">
-                                        Cadastro totalmente gratuito. Cadastre-se, seja você doador ou instituição que deseja participar do programa.
-                                    </p>
-
-                                </div>
-                            </li>
-
-                        </ul>
-
-                    </div>
-
-                    <div class="about-bottom">
-
-                        <figure class="about-bottom-banner">
-                            <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/fe197a645f6c59911b1ac246537cf4902ccd0aae/VenhaFazerParte.svg" alt="about banner" class="about-banner">
-                        </figure>
-
-                        <div class="about-bottom-content">
-
-                            <h2 class="h2 section-title">Venha você também fazer parte desta família</h2>
-
-                            <p class="section-text">
-                                Será um prazer ter você conosco, seja como doador ou instituição. Nossa plataforma está de portas abertas para te ajudar.
-                            </p>
-
-                            <a asp-controller="Logar" asp-action="SelecionaTipoUsuario"><button class="btn btn-secondary">Cadastre-se já!</button></a>
-
-                        </div>
-
-                    </div>
-                    <br />
-                    <br />
-            </section>
-
-
-
-            <!--
-              - #CONTACT
-            -->
-
-            <section class="contact" id="contact">
-                <div class="container">
-
-                    <div class="contact-content">
-                        <h2 class="h2 contact-title">Não fique com dúvidas. Fale com a gente!</h2>
-
-                        <figure class="contact-banner">
-                            <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/e8d1ad58994a904e55dc336f1c712dbf336ac5a3/FaleConosco.svg" alt="contact banner">
-                        </figure>
-                    </div>
-
-                    <form action="" class="contact-form">
-
-                        <div class="input-wrapper">
-                            <label for="name" class="input-label">Nome *</label>
-
-                            <input type="text" name="name" id="name" required placeholder="Nome" class="input-field">
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label for="phone" class="input-label">Telefone</label>
-
-                            <input type="tel" name="phone" id="phone" placeholder="Número de telefone" class="input-field">
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label for="email" class="input-label">Email *</label>
-
-                            <input type="email" name="email" id="email" required placeholder="Endereço de e-mail" class="input-field">
-                        </div>
-
-                        <div class="input-wrapper">
-                            <label for="message" class="input-label">Como podemos ajudar? *</label>
-
-                            <textarea name="message" id="message" placeholder="Descrição" required
-                                      class="input-field"></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
-
-                    </form>
-
-                </div>
-            </section>
-
-        </article>
-
-    </main>
-
-
-
-
-
-    <!--
-      - #FOOTER
-    -->
-
-    <footer>
-
-        <div class="footer-top">
+﻿
+        <!--
+          - #HERO
+        -->
+
+        <section class="hero" id="home">
             <div class="container">
 
-                <div class="footer-brand">
+                <div class="hero-content">
 
-                    <a href="#" class="logo">
-                        <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/LogoConecteDoe.png" width="180px" alt="ConecteDoe logo">
-                    </a>
+                    <h1 class="h1 hero-title">Conecte Doe</h1>
 
-                    <p class="footer-text">Siga-nos</p>
+                    <p class="hero-text">
+                        Conectando pessoas e propósitos!
+                        Juntos fazendo a diferença.
+                    </p>
 
-                    <ul class="social-list">
+                    <a asp-controller="Logar" asp-action="Index"><button class="btn btn-primary">Participar</button></a>
 
-                        <li>
-                            <a href="https://github.com/codewithsadee" class="social-link">
-                                <ion-icon name="logo-github"></ion-icon>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="https://instagram.com/codewithsadee" class="social-link">
-                                <ion-icon name="logo-instagram"></ion-icon>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="https://youtube.com/c/codewithsadee" class="social-link">
-                                <ion-icon name="logo-youtube"></ion-icon>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="social-link">
-                                <ion-icon name="logo-facebook"></ion-icon>
-                            </a>
-                        </li>
-
-                    </ul>
 
                 </div>
 
-                <div class="footer-link-box">
-
-                    <ul class="footer-link-list">
-
-                        <li>
-                            <h3 class="h4 link-title">ConecteDoe</h3>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Sobre nós</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Entrar</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Cadastrar</a>
-                        </li>
-
-                    </ul>
-
-@*                     <ul class="footer-link-list">
-
-                        <li>
-                            <h3 class="h4 link-title">Products</h3>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Blog</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Help Center</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Contact</a>
-                        </li>
-
-                    </ul> *@
-
-                    <ul class="footer-link-list">
-
-                        <li>
-                            <h3 class="h4 link-title">Termos</h3>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Termos da Institução</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Termos do Doador</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">Política de Privacidade</a>
-                        </li>
-
-                    </ul>
-
-                    <ul class="footer-link-list">
-
-                        <li>
-                            <h3 class="h4 link-title">Contato</h3>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">+55 34 98835-1792</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">comercial@conectedoe.com.br</a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="footer-link">administracao@conectedoe.com.br</a>
-                        </li>
-
-                    </ul>
-
+                <div class="hero-banner">
+                    <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/bannerPrincipalFreepik.png" alt="shape" class="bannerPrincipal">
                 </div>
 
             </div>
-        </div>
 
-        <div class="footer-bottom">
-            <p class="copyright">
-                &copy; 2023 <a href="#">@@conectdoe</a> All right reserved
-            </p>
-        </div>
-
-    </footer>
-
-
-    <!--
-      - #GO TO TOP
-    -->
-
-    <a href="#top" class="go-top active" data-go-top>
-        <ion-icon name="chevron-up-outline"></ion-icon>
-    </a>
+            <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/formaPrincipalCorTema.png" alt="shape" class="shape-content">
+        </section>
 
 
 
 
 
-    <!--
-      - custom js link
-    -->
-    
+        <!--
+          - #ABOUT
+        -->
 
-    <!--
-      - ionicon link
-    -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
+        <section class="about" id="about">
 
-</html>
+            <div class="container">
+
+                <div class="about-top">
+                    <br />
+                    <br />
+                    <h2 class="h2 section-title">O que fazemos</h2>
+
+                    <p class="section-text">
+                        Somos uma plataforma voltada para ajudar instituições de caridade e doadores, proporcionando uma maneira mais rápida e fácil de receber e realizar doações. Nosso objetivo é tornar essas ações rápidas, fáceis e seguras, fazendo com que ambas as partes saiam satisfeitas.
+                    </p>
+
+                    <ul class="about-list">
+
+                        <li>
+                            <div class="about-card">
+
+                                <div class="card-icon">
+                                    <ion-icon name="briefcase-outline"></ion-icon>
+                                </div>
+
+                                <h3 class="h3 card-title">Forma rápida e eficiente</h3>
+
+                                <p class="card-text">
+                                    Faça ou receba sua doação através de PIX diretamente, recebendo um comprovante após realizar ou receber a doação.
+                                </p>
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="about-card">
+
+                                <div class="card-icon">
+                                    <ion-icon name="chatbubbles-outline"></ion-icon>
+                                </div>
+
+                                <h3 class="h3 card-title">Fácil visualização</h3>
+
+                                <p class="card-text">
+                                    Dentro da plataforma, você pode visualizar como a instituição funciona e também ver feedbacks de outras pessoas que doaram para a instituição em questão.
+                                </p>
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="about-card">
+
+                                <div class="card-icon">
+                                    <ion-icon name="rocket-outline"></ion-icon>
+                                </div>
+
+                                <h3 class="h3 card-title">Cadastro gratuito</h3>
+
+                                <p class="card-text">
+                                    Cadastro totalmente gratuito. Cadastre-se, seja você doador ou instituição que deseja participar do programa.
+                                </p>
+
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div class="about-bottom">
+
+                    <figure class="about-bottom-banner">
+                        <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/fe197a645f6c59911b1ac246537cf4902ccd0aae/VenhaFazerParte.svg" alt="about banner" class="about-banner">
+                    </figure>
+
+                    <div class="about-bottom-content">
+
+                        <h2 class="h2 section-title">Venha você também fazer parte desta família</h2>
+
+                        <p class="section-text">
+                            Será um prazer ter você conosco, seja como doador ou instituição. Nossa plataforma está de portas abertas para te ajudar.
+                        </p>
+
+                        <a asp-controller="Logar" asp-action="SelecionaTipoUsuario"><button class="btn btn-secondary">Cadastre-se já!</button></a>
+
+                    </div>
+
+                </div>
+                <br />
+                <br />
+        </section>
+
+
+
+        <!--
+          - #CONTACT
+        -->
+
+        <section class="contact" id="contact">
+            <div class="container">
+
+                <div class="contact-content">
+                    <h2 class="h2 contact-title">Não fique com dúvidas. Fale com a gente!</h2>
+
+                    <figure class="contact-banner">
+                        <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/e8d1ad58994a904e55dc336f1c712dbf336ac5a3/FaleConosco.svg" alt="contact banner">
+                    </figure>
+                </div>
+
+                <form action="" class="contact-form">
+
+                    <div class="input-wrapper">
+                        <label for="name" class="input-label">Nome *</label>
+
+                        <input type="text" name="name" id="name" required placeholder="Nome" class="input-field">
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="phone" class="input-label">Telefone</label>
+
+                        <input type="tel" name="phone" id="phone" placeholder="Número de telefone" class="input-field">
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="email" class="input-label">Email *</label>
+
+                        <input type="email" name="email" id="email" required placeholder="Endereço de e-mail" class="input-field">
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="message" class="input-label">Como podemos ajudar? *</label>
+
+                        <textarea name="message" id="message" placeholder="Descrição" required
+                                  class="input-field"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+
+                </form>
+
+            </div>
+        </section>

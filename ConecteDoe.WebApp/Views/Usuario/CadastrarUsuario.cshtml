@@ -80,12 +80,12 @@
                     <form asp-action="InserirConfirmar" asp-controller="Usuario" enctype="multipart/form-data" method="POST" class="sign-up-form">
                         <div>
                             <h3 class="">Informações Pessoais</h3>
-                            <label for="imagem">Escolha uma imagem:</label>
-                            <input type="file" id="imagem" name="Imagem" accept="image/*" />
-                            @*<label class="picture" for="picture__input" tabIndex="0">
+                            @*<label for="imagem">Escolha uma imagem:</label>
+                            <input type="file" id="imagem" name="Imagem" accept="image/*" />*@
+                            <label class="picture" for="picture__input" tabIndex="0">
                                 <span class="picture__image"></span>
                             </label>
-                            <input type="file" name="picture__input" id="picture__input" asp-for="Imagem">*@
+                            <input type="file" name="picture__input" id="picture__input" asp-for="Imagem">
                             <div class="infoPessoal">                            
                                 <div class="input-field">
                                     <i class="fas fa-user"></i>
@@ -204,34 +204,34 @@
     </section>
 
     <script>
-        //const inputFile = document.querySelector("#picture__input");
-        //const pictureImage = document.querySelector(".picture__image");
-        //const pictureImageTxt = "Choose an image";
-        //pictureImage.innerHTML = pictureImageTxt;
+        const inputFile = document.querySelector("#picture__input");
+        const pictureImage = document.querySelector(".picture__image");
+        const pictureImageTxt = "Choose an image";
+        pictureImage.innerHTML = pictureImageTxt;
 
-        //inputFile.addEventListener("change", function (e) {
-        //    const inputTarget = e.target;
-        //    const file = inputTarget.files[0];
+        inputFile.addEventListener("change", function (e) {
+            const inputTarget = e.target;
+            const file = inputTarget.files[0];
 
-        //    if (file) {
-        //        const reader = new FileReader();
+            if (file) {
+                const reader = new FileReader();
 
-        //        reader.addEventListener("load", function (e) {
-        //            const readerTarget = e.target;
+                reader.addEventListener("load", function (e) {
+                    const readerTarget = e.target;
 
-        //            const img = document.createElement("img");
-        //            img.src = readerTarget.result;
-        //            img.classList.add("picture__img");
+                    const img = document.createElement("img");
+                    img.src = readerTarget.result;
+                    img.classList.add("picture__img");
 
-        //            pictureImage.innerHTML = "";
-        //            pictureImage.appendChild(img);
-        //        });
+                    pictureImage.innerHTML = "";
+                    pictureImage.appendChild(img);
+                });
 
-        //        reader.readAsDataURL(file);
-        //    } else {
-        //        pictureImage.innerHTML = pictureImageTxt;
-        //    }
-        //});
+                reader.readAsDataURL(file);
+            } else {
+                pictureImage.innerHTML = pictureImageTxt;
+            }
+        });
 
     </script>
 </body>

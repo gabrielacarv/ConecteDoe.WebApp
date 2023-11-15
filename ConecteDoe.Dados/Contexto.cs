@@ -10,6 +10,8 @@ namespace ConecteDoe.Dados
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Endereco> Endereco { get; set; }
         public DbSet<Instituicao> Instituicao { get; set; }
+
+        public DbSet<Doacao> Doacao { get; set; }
         public DbSet<DadosInstituicao> DadosInstituicao { get; set; }
 
         public Contexto() : base()
@@ -38,6 +40,7 @@ namespace ConecteDoe.Dados
             modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
             modelBuilder.ApplyConfiguration(new InstituicaoConfiguration());
             modelBuilder.ApplyConfiguration(new DadosInstituicaoConfiguration());
+            modelBuilder.ApplyConfiguration(new DoacaoConfiguration());
         }
     }
 }

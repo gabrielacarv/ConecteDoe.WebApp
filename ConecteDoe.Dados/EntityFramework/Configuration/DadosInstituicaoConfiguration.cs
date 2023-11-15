@@ -9,12 +9,12 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
         public void Configure(EntityTypeBuilder<DadosInstituicao> builder)
         {
             builder.ToTable("DadosInstituicao", Constantes.Schema);
-            builder.HasKey(d => d.DadosInstituicaoId);
+            builder.HasKey(d => d.InstituicaoId);
 
             builder
-                .Property(d => d.DadosInstituicaoId)
+                .Property(d => d.InstituicaoId)
                 .UseIdentityColumn()
-                .HasColumnName("DadosInstituicaoId")
+                .HasColumnName("InstituicaoId")
                 .HasColumnType("int");
 
             builder
@@ -40,12 +40,17 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
             builder
                 .Property(d => d.Causa)
                 .HasColumnName("Causa")
-                .HasColumnType("varchar");
+                .HasColumnType("varchar(250)");
 
             builder
-                .Property(u => u.InstituicaoId)
-                .HasColumnName("InstituicaoId")
-                .HasColumnType("int");
+               .Property(d => d.Descricao)
+               .HasColumnName("Descricao ")
+               .HasColumnType("varchar(500)");
+
+            builder
+              .Property(d => d.ChavePix)
+              .HasColumnName("ChavePix")
+              .HasColumnType("varchar(100)");
 
             builder
                 .Property(u => u.Imagem)

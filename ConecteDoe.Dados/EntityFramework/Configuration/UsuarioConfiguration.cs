@@ -8,7 +8,7 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.ToTable("Usuario", Constantes.Schema);
+            builder.ToTable("Doador", Constantes.Schema);
             builder.HasKey(u => u.UsuarioId);
 
             //builder.Ignore(u => u.UsuarioId);
@@ -16,7 +16,7 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
             builder
                 .Property(u => u.UsuarioId)
                 .UseIdentityColumn()
-                .HasColumnName("Id")
+                .HasColumnName("DoadorId")
                 .HasColumnType("int");
 
             builder
