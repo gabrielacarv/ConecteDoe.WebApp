@@ -12,10 +12,9 @@ namespace ConecteDoe.WebApp.Controllers
             _contexto = new Contexto();
         }
 
-        public IActionResult Index(int instituicaoId)
+        public IActionResult SelecionaTipoUsuario()
         {
-            var instituicao = _contexto.Instituicao.Find(instituicaoId);
-            return View(instituicao);
+            return View();
         }
     }
 }
