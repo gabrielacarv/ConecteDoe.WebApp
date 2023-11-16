@@ -30,7 +30,42 @@ namespace ConecteDoe.WebApp.Controllers
         //    }
         //}
 
-        public async Task<IActionResult> Autenticar(string email, string senha)
+        //public async Task<IActionResult> Autenticar(string email, string senha)
+        //{
+        //    var usuario = await db.Usuario.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
+
+        //    if (usuario != null)
+        //    {
+        //        // Autenticação bem-sucedida
+        //        var claims = new List<Claim>
+        //        {
+        //            new Claim(ClaimTypes.Name, usuario.Nome), // Substitua com o campo de nome real do usuário
+        //            new Claim(ClaimTypes.Email, usuario.Email), // Substitua com o campo de email do usuário
+        //            // Você pode adicionar outras informações do usuário, se necessário
+        //            new Claim(ClaimTypes.NameIdentifier, usuario.UsuarioId.ToString())
+
+        //        };
+
+        //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        //        var authProperties = new AuthenticationProperties
+        //        {
+        //            IsPersistent = true, // Se deseja manter o usuário logado permanentemente ou até logout
+        //        };
+
+        //        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+        //        return RedirectToAction("Index", "Plataforma"); // Redirecione para a página desejada após o login
+        //    }
+        //    else
+        //    {
+        //        // Falha na autenticação
+        //        ModelState.AddModelError(string.Empty, "Nome de usuário ou senha inválidos.");
+        //        return View();
+        //    }
+        //}
+
+
+        public async Task<IActionResult> SolucaoAutenticar(string email, string senha)
         {
             var usuario = await db.Usuario.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
 
@@ -58,9 +93,63 @@ namespace ConecteDoe.WebApp.Controllers
             }
             else
             {
-                // Falha na autenticação
-                ModelState.AddModelError(string.Empty, "Nome de usuário ou senha inválidos.");
-                return View();
+                var instituicao = await db.Instituicao.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
+
+                if (instituicao != null)
+                {
+                    // Autenticação bem-sucedida
+                    var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, instituicao.RazaoSocial), // Substitua com o campo de nome real do usuário
+                            new Claim(ClaimTypes.Email, instituicao.Email), // Substitua com o campo de email do usuário
+                            // Você pode adicionar outras informações do usuário, se necessário
+                            new Claim(ClaimTypes.NameIdentifier, instituicao.InstituicaoId.ToString())
+
+                        };
+
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var authProperties = new AuthenticationProperties
+                    {
+                        IsPersistent = true, // Se deseja manter o usuário logado permanentemente ou até logout
+                    };
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                    return RedirectToAction("IndexInstituicao", "Plataforma"); // Redirecione para a página desejada após o login
+                }
+                else
+                {
+                    var admin = await db.Instituicao.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
+
+                    if (admin != null)
+                    {
+                        // Autenticação bem-sucedida
+                        var claims = new List<Claim>
+                            {
+                                new Claim(ClaimTypes.Name, admin.RazaoSocial), // Substitua com o campo de nome real do usuário
+                                new Claim(ClaimTypes.Email, admin.Email), // Substitua com o campo de email do usuário
+                                // Você pode adicionar outras informações do usuário, se necessário
+                                new Claim(ClaimTypes.NameIdentifier, admin.InstituicaoId.ToString())
+
+                            };
+
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var authProperties = new AuthenticationProperties
+                        {
+                            IsPersistent = true, // Se deseja manter o usuário logado permanentemente ou até logout
+                        };
+
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                        return RedirectToAction("Index", "Plataforma"); // Redirecione para a página desejada após o login
+                    }
+                    else
+                    {
+                        // Falha na autenticação
+                        ModelState.AddModelError(string.Empty, "Nome de usuário ou senha inválidos.");
+                        return View();
+                    }
+                }
             }
         }
 

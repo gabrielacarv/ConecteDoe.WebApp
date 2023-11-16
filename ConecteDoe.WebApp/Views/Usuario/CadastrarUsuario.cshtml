@@ -80,12 +80,12 @@
                     <form asp-action="InserirConfirmar" asp-controller="Usuario" enctype="multipart/form-data" method="POST" class="sign-up-form">
                         <div>
                             <h3 class="">Informações Pessoais</h3>
-                            @*<label for="imagem">Escolha uma imagem:</label>
-                            <input type="file" id="imagem" name="Imagem" accept="image/*" />*@
-                            <label class="picture" for="picture__input" tabIndex="0">
+                            <label for="imagem">Escolha uma imagem:</label>
+                            <input type="file" id="imagem" name="Imagem" accept="image/*" asp-for="Imagem" />
+                            @*<label class="picture" for="picture__input" tabIndex="0">
                                 <span class="picture__image"></span>
                             </label>
-                            <input type="file" name="picture__input" id="picture__input" asp-for="Imagem">
+                            <input type="file" name="picture__input" id="picture__input" asp-for="Imagem">*@
                             <div class="infoPessoal">                            
                                 <div class="input-field">
                                     <i class="fas fa-user"></i>
@@ -118,16 +118,16 @@
                             <div class="enderecoDados">
                                 <div class="input-field">
                                     <i></i>
+                                    <input type="text" id="cep" inputmode="text" placeholder="CEP" required onblur="pesquisacep(this.value)" maxlength="9" asp-for="Endereco.CEP" />
+                                </div>
+                                <div class="input-field">
+                                    <i></i>
                                     <input type="text" id="rua" placeholder="Rua" required asp-for="Endereco.Logradouro"  />
                                 </div>
                                 <div class="input-field">
                                     <i></i>
                                     <input type="text" id="numero" inputmode="numeric" placeholder="Número" pattern="\d*" required asp-for="Endereco.Numero"  />
-                                </div>
-                                <div class="input-field">
-                                    <i></i>
-                                    <input type="text" id="cep" inputmode="text" placeholder="CEP" required onblur="pesquisacep(this.value)" maxlength="9" asp-for="Endereco.CEP"  />
-                                </div>
+                                </div>       
                                 <div class="input-field">
                                     <i></i>
                                     <input type="text" id="bairro" placeholder="Bairro" required asp-for="Endereco.Bairro"  />

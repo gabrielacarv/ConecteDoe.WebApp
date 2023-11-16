@@ -46,8 +46,12 @@
         <div class="container">
             <h2>Escolha como deseja criar sua conta!</h2>
             <div class="botoes">
-                <a asp-controller="Usuario" asp-action="CadastrarUsuario"><input type="submit" class="btn" value="Doador" /></a>
-                <a asp-controller="Instituicao" asp-action="CadastrarInstituicao"><input type="submit" class="btn" value="Instituição" /> </a>
+                <a asp-controller="Usuario" asp-action="CadastrarUsuario" asp-route-tipo="Doador">
+                    <input type="submit" class="btn" value="Doador" />
+                </a>
+                <a asp-controller="Instituicao" asp-action="CadastrarInstituicao" asp-route-tipo="Instituicao">
+                    <input type="submit" class="btn" value="Instituição" /> 
+                </a>
             </div>
         </div>
     </main>

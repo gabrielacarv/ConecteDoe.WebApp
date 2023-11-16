@@ -1,5 +1,6 @@
 ﻿using ConecteDoe.Dados;
 using ConecteDoe.Dominio.Entities;
+using ConecteDoe.Dominio.ValuesObjects;
 using ConecteDoe.WebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +15,7 @@ namespace ConecteDoe.WebApp.Controllers
         private Contexto db = new Contexto();
         private object userIdClaim;
 
-        public IActionResult CadastrarUsuario()
+        public IActionResult CadastrarUsuario(string tipo)
         {
             return View();
         }

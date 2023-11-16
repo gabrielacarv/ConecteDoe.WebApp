@@ -11,7 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/CadastrarInstituicao.css" asp-append-version="true" />
+    <script src="~/js/CadastrarInstituicao.js" asp-append-version="true"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+    @*SCRIPT PARA VALIDACAO CPF*@
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- jQuery e Inputmask (usados para a máscara de CPF) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/ConecteDoe.ico" type="image/svg+xml">
     <title>Conecte Doe</title>
@@ -65,6 +79,10 @@
                         <h3 class="">Informações Institucional</h3>
                         <label for="imagem">Escolha uma imagem:</label>
                         <input type="file" id="imagem" name="Imagem" accept="image/*" />
+                        @*<label class="picture" for="picture__input">
+                            <span class="picture__image"></span>
+                        </label>
+                        <input type="file" name="picture__input" id="picture__input" asp-for="Imagem">*@
                         <div class="infoPessoal">                          
                             <div class="input-field">
                                 <i class="fas fa-solid fa-building"></i>
@@ -76,7 +94,7 @@
                             </div>
                             <div class="input-field">
                                 <i class="fas fa-solid fa-phone"></i>
-                                <input type="tel" placeholder="Telefone" required asp-for="Telefone" />
+                                <input type="text" id="telefone" name="telefone" placeholder="Telefone" maxlength="15" required asp-for="Telefone" />
                             </div>
                         </div>
                     </div>                
@@ -85,31 +103,31 @@
                         <div class="enderecoDados">
                             <div class="input-field">
                                 <i></i>
-                                <input type="text" placeholder="Rua" required asp-for="Endereco.Logradouro" />
+                                <input type="text" id="cep" inputmode="text" placeholder="CEP" required onblur="pesquisacep(this.value)" maxlength="9" asp-for="Endereco.CEP" />
                             </div>
                             <div class="input-field">
                                 <i></i>
-                                <input type="text" inputmode="numeric" placeholder="Número" pattern="\d*" required asp-for="Endereco.Numero" />
+                                <input type="text" id="rua" placeholder="Rua" required asp-for="Endereco.Logradouro" />
                             </div>
                             <div class="input-field">
                                 <i></i>
-                                <input type="text" inputmode="text" placeholder="CEP" required asp-for="Endereco.CEP" />
+                                <input type="text" id="numero" inputmode="numeric" placeholder="Número" pattern="\d*" required asp-for="Endereco.Numero" />
                             </div>
                             <div class="input-field">
                                 <i></i>
-                                <input type="text" placeholder="Bairro" required asp-for="Endereco.Bairro" />
+                                <input type="text" id="bairro" placeholder="Bairro" required asp-for="Endereco.Bairro" />
                             </div>
                             <div class="input-field">
                                 <i></i>
-                                <input type="text" placeholder="Complemento" required asp-for="Endereco.Complemento" />
+                                <input type="text" id="complemento" placeholder="Complemento" required asp-for="Endereco.Complemento" />
                             </div>
                             <div class="input-field">
                                 <i></i>
-                                <input type="text" placeholder="Cidade" required asp-for="Endereco.Cidade" />
+                                <input type="text" id="cidade"  placeholder="Cidade" required asp-for="Endereco.Cidade" />
                             </div>
 
                             @*<input type="text" placeholder="Estado" required asp-for="Endereco.Estado" />*@
-                            <select class="input-field-s" asp-for="Endereco.Estado">
+                            <select class="input-field-s" id="estado" asp-for="Endereco.Estado">
                                 <option disabled selected>Estado</option>
                                 <option value="AC">Acre</option>
                                 <option value="AL">Alagoas</option>
@@ -164,4 +182,35 @@
 
             </div>
         </div>
+
+        <script>
+            const inputFile = document.querySelector("#picture__input");
+            const pictureImage = document.querySelector(".picture__image");
+            const pictureImageTxt = "Perfil";
+            pictureImage.innerHTML = pictureImageTxt;
+
+            inputFile.addEventListener("change", function (e) {
+                const inputTarget = e.target;
+                const file = inputTarget.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.addEventListener("load", function (e) {
+                        const readerTarget = e.target;
+
+                        const img = document.createElement("img");
+                        img.src = readerTarget.result;
+                        img.classList.add("picture__img");
+
+                        pictureImage.innerHTML = "";
+                        pictureImage.appendChild(img);
+                    });
+
+                    reader.readAsDataURL(file);
+                } else {
+                    pictureImage.innerHTML = pictureImageTxt;
+                }
+            });
+        </script>
 </body>
