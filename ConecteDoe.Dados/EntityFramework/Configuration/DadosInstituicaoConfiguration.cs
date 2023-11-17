@@ -44,7 +44,7 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
 
             builder
                .Property(d => d.Descricao)
-               .HasColumnName("Descricao ")
+               .HasColumnName("Descricao")
                .HasColumnType("varchar(500)");
 
             builder

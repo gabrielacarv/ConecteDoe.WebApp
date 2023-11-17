@@ -46,7 +46,7 @@ namespace ConecteDoe.WebApp.Controllers
 
             // Use a função Include para carregar as tabelas relacionadas
             var resultadoPaginado = db.Instituicao
-                .Include(i => i.DadosInstituicao)
+                //.Include(i => i.DadosInstituicao)
                 .Include(i => i.Endereco)
                 .OrderBy(u => u.RazaoSocial)
                 .Skip(indiceInicial)
@@ -57,7 +57,7 @@ namespace ConecteDoe.WebApp.Controllers
             var viewModel = resultadoPaginado.Select(instituicao => new PerfilInstituicaoViewModel
             {
                 Instituicao = instituicao,
-                DadosInstituicao = instituicao.DadosInstituicao,
+                //DadosInstituicao = (Dominio.Entities.DadosInstituicao)instituicao.DadosInstituicao,
                 Endereco = instituicao.Endereco
             }).ToList();
 
