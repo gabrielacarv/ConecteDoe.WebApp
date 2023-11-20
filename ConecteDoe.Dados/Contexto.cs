@@ -14,6 +14,7 @@ namespace ConecteDoe.Dados
         public DbSet<DadosInstituicao> DadosInstituicao { get; set; }
         public DbSet<UsuarioTipoUsuario> UsuarioTipoUsuario { get; set; }
         public DbSet<TipoUsuario> TipoUsuario { get; set; }
+        public DbSet<GaleriaFotos> GaleriaFotos { get; set; }
 
         public Contexto() : base()
         {
@@ -44,6 +45,7 @@ namespace ConecteDoe.Dados
             modelBuilder.ApplyConfiguration(new DoacaoConfiguration());
             modelBuilder.ApplyConfiguration(new UsuarioTipoUsuarioConfiguration());
             modelBuilder.ApplyConfiguration(new TipoUsuarioConfiguration());
+            modelBuilder.ApplyConfiguration(new GaleriaFotosConfiguration());
         }
     }
 }

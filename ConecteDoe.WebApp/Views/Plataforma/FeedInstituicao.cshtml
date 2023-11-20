@@ -103,7 +103,8 @@
                                 </div>
                             </div>
                             <div class="botoes-card">
-                                <button @*class="openModalBtn" data-modal-id="@item.Instituicao.InstituicaoId"*@ asp-route-id="@item.Instituicao.InstituicaoId">Visitar Perfil</button>
+                                @*<button class="openModalBtn" data-modal-id="@item.Instituicao.InstituicaoId asp-route-id="@item.Instituicao.InstituicaoId">Visitar Perfil</button>"*@
+                                <a asp-controller="PerfilGaleriaInstituicao" asp-action="PerfilGaleriaInstituicao"><button class="btn btn-secondary">Visitar Perfil</button></a>
                                 <button class="openModalBtn" data-modal-id="@item.Instituicao.InstituicaoId" asp-route-id="@item.Instituicao.InstituicaoId">Fazer Doação</button>
                             </div>
                         </div>
