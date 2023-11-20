@@ -18,6 +18,6 @@ namespace ConecteDoe.Dominio.Entities
         public string Senha { get; set; }
         public int EnderecoId { get; set; }
         public byte[] Imagem { get; set; }
-        //public ICollection<DadosInstituicao> DadosInstituicao { get; set; }
+        public DadosInstituicao DadosInstituicao { get; set; }
     }
 }

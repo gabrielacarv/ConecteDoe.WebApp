@@ -57,10 +57,15 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
                 .HasColumnName("Imagem")
                 .HasColumnType("varbinary(max)");
 
+            //builder
+            //    .HasOne(u => u.Instituicao)
+            //    .WithMany()
+            //    .HasForeignKey(u => u.InstituicaoId);
+
             builder
-                .HasOne(u => u.Instituicao)
-                .WithMany()
-                .HasForeignKey(u => u.InstituicaoId);
+                .HasOne(d => d.Instituicao)
+                .WithOne(i => i.DadosInstituicao)
+                .HasForeignKey<DadosInstituicao>(d => d.InstituicaoId);
         }
     }
 }
