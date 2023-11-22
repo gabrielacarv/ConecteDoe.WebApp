@@ -35,7 +35,17 @@ namespace ConecteDoe.Dados.EntityFramework.Configuration
             builder
                 .Property(d => d.DataDoacao)
                 .HasColumnName("DataDoacao")
-                .HasColumnType("date");
+                .HasColumnType("datetime");
+
+            builder
+                .Property(d => d.Valor)
+                .HasColumnName("Valor")
+                .HasColumnType("decimal");
+
+            builder
+                .Property(u => u.Comprovante)
+                .HasColumnName("Comprovante")
+                .HasColumnType("varbinary(max)");
 
             builder
                 .HasOne(u => u.Usuario)

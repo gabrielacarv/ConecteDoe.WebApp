@@ -12,7 +12,8 @@ namespace ConecteDoe.Dominio.Entities
         public int DoadorId { get; set; }
         public int InstituicaoId { get; set; }
         public DateTime DataDoacao { get; set; }
-        public double Valor { get; set; }
+        public decimal Valor { get; set; }
+        public byte[] Comprovante { get; set; }
         public Usuario Usuario { get; set; }
         public Instituicao Instituicao { get; set;}
     }

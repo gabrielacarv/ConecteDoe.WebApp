@@ -1,8 +1,12 @@
 ﻿using ConecteDoe.Dados;
+using ConecteDoe.Dominio.Entities;
 using ConecteDoe.WebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using System.Security.Claims;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ConecteDoe.WebApp.Controllers
 {
@@ -17,6 +21,11 @@ namespace ConecteDoe.WebApp.Controllers
         }
 
         public IActionResult IndexInstituicao()
+        {
+            return View();
+        }
+
+        public IActionResult Agradecimento()
         {
             return View();
         }
@@ -68,6 +77,50 @@ namespace ConecteDoe.WebApp.Controllers
 
             return View(viewModel);
         }
+
+        [HttpPost]
+        public IActionResult RealizarDoacao([FromForm] int id, [FromForm] decimal valor, [FromForm] IFormFile arquivo)
+        {
+            // Obtenha a instituição e o usuário autenticado, se necessário
+            var instituicao = db.Instituicao.FirstOrDefault(i => i.InstituicaoId == id);
+            var userIdClaim = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+            int userId = int.Parse(userIdClaim.Value);
+            var doador = db.Usuario.FirstOrDefault(d => d.UsuarioId == userId); // Ajuste conforme necessário
+
+            // Verifique se a instituição e o doador existem
+            if (instituicao == null || doador == null)
+            {
+                // Trate o erro, redirecione ou retorne uma resposta adequada
+                return RedirectToAction("Index", "Usuario");
+            }
+
+
+            // Crie uma nova instância de Doacao
+            var doacao = new Doacao
+            {
+                InstituicaoId = id,
+                DoadorId = doador.UsuarioId,
+                DataDoacao = DateTime.Now,
+                Valor = valor,
+            };
+
+            if (arquivo != null && arquivo.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    arquivo.CopyTo(ms);
+                    doacao.Comprovante = ms.ToArray();
+                }
+            }
+
+            // Salve a doação no banco de dados
+            db.Doacao.Add(doacao);
+            db.SaveChanges();
+
+            // Redirecione ou retorne uma resposta adequada
+            return RedirectToAction("Agradecimento", "Plataforma");
+        }
+
 
     }
 }

@@ -131,7 +131,8 @@ namespace ConecteDoe.WebApp.Controllers
                     usuarioExistente.Sexo = viewModel.Usuario.Sexo;
                     usuarioExistente.CPF = viewModel.Usuario.CPF;
                     usuarioExistente.Telefone =viewModel.Usuario.Telefone;
-                    usuarioExistente.Email = viewModel.Usuario.Email;
+                    usuarioExistente.Senha = viewModel.Usuario.Senha;
+                    //usuarioExistente.Email = viewModel.Usuario.Email;
                     // Atualize outras propriedades conforme necessário
 
                     // Se você deseja atualizar o objeto relacionado (Endereco), faça o mesmo para ele.

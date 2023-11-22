@@ -25,6 +25,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbs5uP6N8rWi4qN6l5zg0y1W8WBRjISkYoYtBYb1L4pUZ5Jg6A/kwY8R+2DO2MMy" crossorigin="anonymous">
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+
     <script src="script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,7 +108,7 @@
                             </div>
                             <div class="botoes-card">
                                 @*<button class="openModalBtn" data-modal-id="@item.Instituicao.InstituicaoId asp-route-id="@item.Instituicao.InstituicaoId">Visitar Perfil</button>"*@
-                                <a asp-controller="PerfilGaleriaInstituicao" asp-action="PerfilGaleriaInstituicao"><button class="btn btn-secondary">Visitar Perfil</button></a>
+                                <a asp-controller="PerfilGaleriaInstituicao" asp-action="PerfilGaleriaInstituicao"><button class="btn btn-secondary" desability>Visitar Perfil</button></a>
                                 <button class="openModalBtn" data-modal-id="@item.Instituicao.InstituicaoId" asp-route-id="@item.Instituicao.InstituicaoId">Fazer Doação</button>
                             </div>
                         </div>
@@ -126,17 +130,37 @@
                                     <div class="card-dados-secundarios-modal">
                                         <h4>Chave Pix: @item.DadosInstituicao.ChavePix</h4>
                                         <label for="realInput">Digite o valor para doação: </label>
-                                        <div class="input-field">
-                                            @* <i class="fas fa-solid fa-money-bill" style="color: #abed1a;"></i> *@
-                                            <input type="text" placeholder="R$" id="realInput" required>
-                                        </div>
-                                        <div class="btn-modal">
-                                            <form asp-controller="" asp-action="" class="btn-modal" method="POST">
-                                                <label for="arquivo" id="input">Enviar Comprovante</label>
-                                                <input type="file" name="arquivo" id="arquivo" required>
-                                                <button class="btn" type="submit">Doar</button>
-                                            </form>                                           
-                                        </div>
+
+                                        @*<form id="formDoacao" asp-controller="Plataforma" asp-action="RealizarDoacao" class="btn-modal" method="POST" enctype="multipart/form-data" onsubmit="return enviarFormulario()">
+                                            <div class="card-dados-secundarios-modal">
+                                                    <div class="input-field">
+                                                    
+                                                    <input type="text" name="valor" id="valor" class="realInputClass" required>
+                                                    </div>
+                                                    <div class="btn-modal">
+                                                        <input type="hidden" name="id" value="@item.Instituicao.InstituicaoId" />
+                                                        
+                                                        <label for="arquivo" id="input" required>Enviar Comprovante</label>
+                                                        <input type="file" name="arquivo" id="arquivo" >
+                                                        <button class="btn">Doar</button>
+                                                    </div>
+                                                </div>
+                                        </form>*@
+
+                                        <form id="formDoacao-@item.Instituicao.InstituicaoId" asp-controller="Plataforma" asp-action="RealizarDoacao" class="btn-modal" method="POST" enctype="multipart/form-data" onsubmit="return enviarFormulario('@item.Instituicao.InstituicaoId')">
+                                            <div class="card-dados-secundarios-modal">
+                                                <div class="input-field">
+                                                    <input type="text" name="valor" id="valor-@item.Instituicao.InstituicaoId" class="realInputClass" required>
+                                                </div>
+                                                <div class="btn-modal">
+                                                    <input type="hidden" name="id" value="@item.Instituicao.InstituicaoId" />
+                                                    <label for="arquivo-@item.Instituicao.InstituicaoId" id="input">Enviar Comprovante</label>
+                                                    <input type="file" name="arquivo" id="arquivo-@item.Instituicao.InstituicaoId" required>
+                                                    <button class="btn">Doar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        
                                     </div>
                                     <div class="card-dados-secundarios-modal-2">
                                         <h4>Como Doar?</h4>
@@ -151,7 +175,7 @@
                         <div class="card-dados-secundarios">
                             <h4>Causa</h4>
                             <div class="texto-limitado">
-                                <p class="texto-Para-Limitar"> @*@item.Instituicao.Email*@ @item.DadosInstituicao.Causa</p>
+                                <p class="texto-Para-Limitar">@item.DadosInstituicao.Causa</p>
                             </div>
                         </div>
 
@@ -218,6 +242,41 @@
                     elemento.textContent = textoExibido + '...';
                 }
             });
+
+            ///// ENVIAR AS INFORMACAO PARA DOACAO
+            //document.addEventListener("DOMContentLoaded", function () {
+            //    var buttons = document.querySelectorAll(".openModalBtn");
+
+            //    buttons.forEach(function (button) {
+            //        button.addEventListener("click", function () {
+            //            var instituicaoId = button.getAttribute("data-modal-id");
+            //            enviarDadosDaDoacao(instituicaoId);
+            //        });
+            //    });
+
+            //    function enviarDadosDaDoacao(instituicaoId) {
+            //        // Aqui você pode fazer o que quiser com o instituicaoId, como enviar uma requisição AJAX
+            //        // ou atualizar um formulário antes de enviar.
+            //        // Exemplo: atualizar o action e o método do formulário de doação
+            //        var form = document.querySelector(".btn-modal form");
+            //        form.action = "/Controller/Action/" + instituicaoId;
+            //        form.method = "POST";
+
+            //        // Aqui você pode adicionar outros dados que deseja enviar junto com a doação, se necessário.
+
+            //        // Agora, o formulário está configurado para enviar os dados corretos quando o usuário clicar em "Doar".
+            //    }
+            //});
+
+            function enviarFormulario(instituicaoId) {
+
+                return true;
+            }
+
+
+
+
+
 
             //// Paginação
             // Selecting DOM elements
@@ -315,25 +374,14 @@
 
 
         // Função para formatar o valor em Real
-        function formatReal(value) {
-            value = value.replace(/\D/g, ''); // Remove caracteres não numéricos
-            value = value.replace(/^0+/, ''); // Remove zeros à esquerda
-            if (value.length === 1) {
-                value = '0' + value; // Adiciona um zero à esquerda se tiver apenas um dígito
-            }
-            value = value.replace(/(\d{2})$/, ',$1'); // Adiciona a vírgula antes dos últimos dois dígitos
-            value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.'); // Adiciona pontos para separar milhares
-
-            return 'R$ ' + value;
-        }
-
-        // Referência ao input
-        var realInput = document.getElementById('realInput');
-
-        // Evento de entrada (keyup) para aplicar a máscara em tempo real
-        realInput.addEventListener('keyup', function () {
-            var value = realInput.value;
-            realInput.value = formatReal(value);
+        $(document).ready(function () {
+            $('.realInputClass').maskMoney({
+                prefix: 'R$ ',
+                allowNegative: false,
+                thousands: '.',
+                decimal: ',',
+                affixesStay: false
+            });
         });
     </script>
 </body>   
