@@ -132,6 +132,10 @@ form {
         border-color: #6C733D;
     }
 
+#spanErrorMessage{
+    color: red;
+}
+
 .btn {
     width: 150px;
     background-color: #abed1a;

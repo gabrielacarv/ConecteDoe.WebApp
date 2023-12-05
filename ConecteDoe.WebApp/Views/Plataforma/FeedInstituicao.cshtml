@@ -49,10 +49,10 @@
                 <nav class="navbar" data-navbar>
                     <ul class="navbar-list">
                         <li class="nav-item">
-                            <a asp-controller="Plataforma" asp-action="Index" class="nav-link">Início</a>
+                            <a href="javascript:void(0);" onclick="goBack()" class="nav-link">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#about" class="nav-link">Instituições</a>
+                            <a asp-controller="Plataforma" asp-action="FeedInstituicao" class="nav-link">Instituições</a>
                         </li>
 
                         <li class="nav-item">
@@ -82,40 +82,25 @@
 
     <section>
         <div class="container">
-            @using (Html.BeginForm("Busca", "Administracao", FormMethod.Get))
-            {
-                <div class="container-busca">
-                    <input type="text" name="searchTerm" placeholder="Pesquisa" />
-                    <button type="submit">Buscar</button>
-                </div>
-            }
+            <div class="titulo">
+                <h2>Instituições</h2>
+            </div>
+            <div class="container-busca">
+            <form id="searchForm" asp-controller="Plataforma" asp-action="FeedInstituicao" method="get">
+                <input type="text" name="searchTerm" placeholder="Pesquisa" />
+                <button type="submit">Buscar</button>
+            </form>
+            </div>
+           
             <div class="card-container">
                 @foreach (var item in Model)
                 {
-                    <div class="card-conteudo">
-                        <div class="card-dados-principal">
-                            @*<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT85VbZ8wHdLOLkr2OyuBOOZ4WgeFMMvORLejAuM_WHipG5GMNGzL8V-a5F7I2L9PUQlSI&usqp=CAU">*@
-                            <div class="card-dados-principal-superior">
-                                <img src="data:image/png;base64,@Convert.ToBase64String(item.Instituicao.Imagem)" alt="Imagem do Usuário" />
-                                <div class="texto-superior">
-                                    <h1>@item.Instituicao.RazaoSocial</h1>
-                                    <p>@item.DadosInstituicao.Categoria</p>
-                                    <div class="localidade">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" /></svg>
-                                        <p>@item.Endereco.Cidade-@item.Endereco.Estado</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="botoes-card">
-                                @*<button class="openModalBtn" data-modal-id="@item.Instituicao.InstituicaoId asp-route-id="@item.Instituicao.InstituicaoId">Visitar Perfil</button>"*@
-                                <a asp-controller="PerfilGaleriaInstituicao" asp-action="PerfilGaleriaInstituicao"><button class="btn btn-secondary" desability>Visitar Perfil</button></a>
-                                <button class="openModalBtn" data-modal-id="@item.Instituicao.InstituicaoId" asp-route-id="@item.Instituicao.InstituicaoId">Fazer Doação</button>
-                            </div>
-                        </div>
-                        <div id="myModal-@item.Instituicao.InstituicaoId" class="modal">
-                            <div class="modal-content">
-                                <span class="close" data-modal-id="@item.Instituicao.InstituicaoId">&times;</span>
-                                <div class="card-dados-principal-modal">
+                    if (item.Instituicao != null && item.DadosInstituicao != null && item.Endereco != null)
+                    {
+                        <div class="card-conteudo">
+                            <div class="card-dados-principal">
+                                @*<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT85VbZ8wHdLOLkr2OyuBOOZ4WgeFMMvORLejAuM_WHipG5GMNGzL8V-a5F7I2L9PUQlSI&usqp=CAU">*@
+                                <div class="card-dados-principal-superior">
                                     <img src="data:image/png;base64,@Convert.ToBase64String(item.Instituicao.Imagem)" alt="Imagem do Usuário" />
                                     <div class="texto-superior">
                                         <h1>@item.Instituicao.RazaoSocial</h1>
@@ -126,20 +111,40 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-geral-secundario">
-                                    <div class="card-dados-secundarios-modal">
-                                        <h4>Chave Pix: @item.DadosInstituicao.ChavePix</h4>
-                                        <label for="realInput">Digite o valor para doação: </label>
+                                <div class="botoes-card">
+                                    <a class="openModalBtn" asp-controller="Instituicao" asp-action="PerfilInstituicaoExibicao" asp-route-id="@item.Instituicao.InstituicaoId">Visitar Perfil</a>
+                                    @*<a asp-controller="PerfilGaleriaInstituicao" asp-action="PerfilGaleriaInstituicao"><button class="btn btn-secondary" desability>Visitar Perfil</button></a>*@
+                                    <button class="openModalBtn" data-modal-id="@item.Instituicao.InstituicaoId" asp-route-id="@item.Instituicao.InstituicaoId">Fazer Doação</button>
+                                </div>
+                            </div>
+                            <div id="myModal-@item.Instituicao.InstituicaoId" class="modal">
+                                <div class="modal-content">
+                                    <span class="close" data-modal-id="@item.Instituicao.InstituicaoId">&times;</span>
+                                    <div class="card-dados-principal-modal">
+                                        <img src="data:image/png;base64,@Convert.ToBase64String(item.Instituicao.Imagem)" alt="Imagem do Usuário" />
+                                        <div class="texto-superior">
+                                            <h1>@item.Instituicao.RazaoSocial</h1>
+                                            <p>@item.DadosInstituicao.Categoria</p>
+                                            <div class="localidade">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" /></svg>
+                                                <p>@item.Endereco.Cidade-@item.Endereco.Estado</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-geral-secundario">
+                                        <div class="card-dados-secundarios-modal">
+                                            <h4>Chave Pix: @item.DadosInstituicao.ChavePix</h4>
+                                            <label for="realInput">Digite o valor para doação: </label>
 
-                                        @*<form id="formDoacao" asp-controller="Plataforma" asp-action="RealizarDoacao" class="btn-modal" method="POST" enctype="multipart/form-data" onsubmit="return enviarFormulario()">
+                                            @*<form id="formDoacao" asp-controller="Plataforma" asp-action="RealizarDoacao" class="btn-modal" method="POST" enctype="multipart/form-data" onsubmit="return enviarFormulario()">
                                             <div class="card-dados-secundarios-modal">
                                                     <div class="input-field">
-                                                    
+
                                                     <input type="text" name="valor" id="valor" class="realInputClass" required>
                                                     </div>
                                                     <div class="btn-modal">
                                                         <input type="hidden" name="id" value="@item.Instituicao.InstituicaoId" />
-                                                        
+
                                                         <label for="arquivo" id="input" required>Enviar Comprovante</label>
                                                         <input type="file" name="arquivo" id="arquivo" >
                                                         <button class="btn">Doar</button>
@@ -147,39 +152,40 @@
                                                 </div>
                                         </form>*@
 
-                                        <form id="formDoacao-@item.Instituicao.InstituicaoId" asp-controller="Plataforma" asp-action="RealizarDoacao" class="btn-modal" method="POST" enctype="multipart/form-data" onsubmit="return enviarFormulario('@item.Instituicao.InstituicaoId')">
-                                            <div class="card-dados-secundarios-modal">
-                                                <div class="input-field">
-                                                    <input type="text" name="valor" id="valor-@item.Instituicao.InstituicaoId" class="realInputClass" required>
+                                            <form id="formDoacao-@item.Instituicao.InstituicaoId" asp-controller="Plataforma" asp-action="RealizarDoacao" class="btn-modal" method="POST" enctype="multipart/form-data" onsubmit="return enviarFormulario('@item.Instituicao.InstituicaoId')">
+                                                <div class="card-dados-secundarios-modal">
+                                                    <div class="input-field">
+                                                        <input type="text" name="valor" id="valor-@item.Instituicao.InstituicaoId" class="realInputClass" required>
+                                                    </div>
+                                                    <div class="btn-modal">
+                                                        <input type="hidden" name="id" value="@item.Instituicao.InstituicaoId" />
+                                                        <label for="arquivo-@item.Instituicao.InstituicaoId" id="input">Enviar Comprovante</label>
+                                                        <input type="file" name="arquivo" id="arquivo-@item.Instituicao.InstituicaoId" required>
+                                                        <button class="btn">Doar</button>
+                                                    </div>
                                                 </div>
-                                                <div class="btn-modal">
-                                                    <input type="hidden" name="id" value="@item.Instituicao.InstituicaoId" />
-                                                    <label for="arquivo-@item.Instituicao.InstituicaoId" id="input">Enviar Comprovante</label>
-                                                    <input type="file" name="arquivo" id="arquivo-@item.Instituicao.InstituicaoId" required>
-                                                    <button class="btn">Doar</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        
-                                    </div>
-                                    <div class="card-dados-secundarios-modal-2">
-                                        <h4>Como Doar?</h4>
-                                        <p>1 - Insira o valor que deseja doar.</p>
-                                        <p>2 - Faça o PIX pelo seu banco de preferência.</p>
-                                        <p>3 - Insira o comprovante de realização do PIX.</p>
-                                        <p>4 - Clique em "Doar" para finalizar a doação.</p>
+                                            </form>
+
+                                        </div>
+                                        <div class="card-dados-secundarios-modal-2">
+                                            <h4>Como Doar?</h4>
+                                            <p>1 - Insira o valor que deseja doar.</p>
+                                            <p>2 - Faça o PIX pelo seu banco de preferência.</p>
+                                            <p>3 - Insira o comprovante de realização do PIX.</p>
+                                            <p>4 - Clique em "Doar" para finalizar a doação.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-dados-secundarios">
-                            <h4>Causa</h4>
-                            <div class="texto-limitado">
-                                <p class="texto-Para-Limitar">@item.DadosInstituicao.Causa</p>
+                            <div class="card-dados-secundarios">
+                                <h4>Causa</h4>
+                                <div class="texto-limitado">
+                                    <p class="texto-Para-Limitar">@item.DadosInstituicao.Causa</p>
+                                </div>
                             </div>
-                        </div>
 
-                    </div>
+                        </div>
+                    }
                 }
             </div>
         </div>
@@ -229,6 +235,11 @@
 
 
     <script>
+
+        function enviarFormulario(instituicaoId) {
+                return true;
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             // Limite de caracteres para texto
             var elementosTexto = document.querySelectorAll('.texto-para-limitar');
@@ -242,6 +253,26 @@
                     elemento.textContent = textoExibido + '...';
                 }
             });
+
+            document.getElementById('searchForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Obter o termo de pesquisa do input
+                var searchTerm = document.querySelector('input[name="searchTerm"]').value.toLowerCase();
+
+                // Filtrar os cards com base no termo de pesquisa
+                document.querySelectorAll('.card-conteudo').forEach(function (card) {
+                    var cardText = card.textContent.toLowerCase();
+
+                    // Exibir ou ocultar o card com base no termo de pesquisa
+                    if (cardText.indexOf(searchTerm) !== -1) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
 
             ///// ENVIAR AS INFORMACAO PARA DOACAO
             //document.addEventListener("DOMContentLoaded", function () {
@@ -266,18 +297,8 @@
 
             //        // Agora, o formulário está configurado para enviar os dados corretos quando o usuário clicar em "Doar".
             //    }
-            //});
-
-            function enviarFormulario(instituicaoId) {
-
-                return true;
-            }
-
-
-
-
-
-
+            //});    
+            
             //// Paginação
             // Selecting DOM elements
             const startBtn = document.querySelector("#startBtn"),
@@ -371,7 +392,31 @@
             });
         };
 
+        //$(document).ready(function () {
+        //    // Adicionar evento ao formulário de busca
+        //    $('form').submit(function (e) {
+        //        // Impede o envio do formulário padrão
 
+        //        // Obter o termo de pesquisa do input
+        //        var searchTerm = $('input[name="searchTerm"]').val().toLowerCase();
+
+        //        // Filtrar os cards com base no termo de pesquisa
+        //        $('.card-conteudo').each(function () {
+        //            var cardText = $(this).text().toLowerCase();
+
+        //            // Exibir ou ocultar o card com base no termo de pesquisa
+        //            if (cardText.indexOf(searchTerm) !== -1) {
+        //                $(this).show();
+        //            } else {
+        //                $(this).hide();
+        //            }
+        //        });
+        //    });
+        //});
+
+        function goBack() {
+            window.history.back();
+        }
 
         // Função para formatar o valor em Real
         $(document).ready(function () {

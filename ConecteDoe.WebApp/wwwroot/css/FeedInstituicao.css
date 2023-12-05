@@ -276,13 +276,17 @@ header {
      * #BUSCAR
     \*-----------------------------------*/
 .container-busca {
-    padding-top: 40px;
-    padding-bottom: 60px;
+    padding-top: 10px;
+    padding-bottom: 50px;
 }
 
+    .container-busca input{
+        width: 200px;
+    }
+
 /*-----------------------------------*\
-     * #CARD
-    \*-----------------------------------*/
+    * #CARD
+\*-----------------------------------*/
 .card-conteudo {
     background-color: #e6e7e8;
     border-radius: 25px;
@@ -353,30 +357,35 @@ header {
     background: hsla(0, 0%, 100%, 0.1);
 }
 
-/*section {
+section {
     margin: 0;
     padding: 0;
-    background-image: url('https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/formaPrincipalCorTema.png');*/ /* Substitua pelo caminho correto para a sua imagem */
-/*background-size: 60%;
+/*    background-image: url('https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/formaPrincipalCorTema.png');
+*/
     background-attachment: fixed;
     background-repeat: no-repeat;
-}*/
+    min-height: 600px;
+}
 
 .texto-Para-Limitar {
     text-align: justify;
 }
 
-
+.titulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    padding: 20px;
+}
 
 /*-----------------------------------*\
      * #PAGINACAO
     \*-----------------------------------*/
-
 .container-pagination {
     padding: 20px;
     border-radius: 8px;
     column-gap: 12px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);*/
 }
 
 .container-pagination,
@@ -610,6 +619,23 @@ input[type="file"] {
     width: 100%;
     align-items: center;
 }
+
+.botoes-card a {
+    background: var(--bittersweet);
+    border-color: var(--bittersweet);
+    color: var(--white);
+    padding: 10px;
+    font-size: var(--fs-6);
+    text-transform: uppercase;
+    font-weight: var(--fw-600);
+    padding: 10px 45px;
+    border: 0px solid;
+    border-radius: 6px;
+}
+
+    .botoes-card a:is(:hover, :focus) {
+        --bittersweet: #88bd15;
+    }
 
 /*TABELA
 */

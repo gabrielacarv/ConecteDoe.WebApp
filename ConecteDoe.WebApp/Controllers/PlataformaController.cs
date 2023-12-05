@@ -30,6 +30,11 @@ namespace ConecteDoe.WebApp.Controllers
             return View();
         }
 
+        public IActionResult IndexAdmin()
+        {
+            return View();
+        }
+
         //public IActionResult FeedInstituicao(int pagina = 1, int itensPorPagina = 10)
         //{
         //    int indiceInicial = (pagina - 1) * itensPorPagina;
@@ -121,6 +126,36 @@ namespace ConecteDoe.WebApp.Controllers
             return RedirectToAction("Agradecimento", "Plataforma");
         }
 
+        public ActionResult BuscaCardInstituicao(string searchTerm)
+        {
+            // Consulta no banco de dados com base no termo de pesquisa
+            var results = db.Usuario
+                .Where(m => m.Nome.Contains(searchTerm))
+                .ToList();
 
+            var pesquisaModelResults = results.Select(result => new PesquisaModel
+            {
+                UsuarioId = result.UsuarioId,
+                Nome = result.Nome,
+                DataNascimento = result.DataNascimento,
+                Sexo = result.Sexo.ToString(),
+                CPF = result.CPF,
+                Telefone = result.Telefone,
+                Email = result.Email
+            }).ToList();
+
+            var usuarioResults = results.Select(result => new Usuario
+            {
+                UsuarioId = result.UsuarioId,
+                Nome = result.Nome,
+                DataNascimento = result.DataNascimento,
+                Sexo = result.Sexo,
+                CPF = result.CPF,
+                Telefone = result.Telefone,
+                Email = result.Email
+            }).ToList();
+
+            return View("Index", usuarioResults);
+        }
     }
 }

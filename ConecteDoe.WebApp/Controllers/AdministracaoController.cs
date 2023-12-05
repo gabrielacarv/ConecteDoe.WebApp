@@ -16,6 +16,13 @@ namespace ConecteDoe.WebApp.Controllers
             return View(resultado);
         }
 
+        public IActionResult IndexInstituicao()
+        {
+            var resultado = db.Instituicao.ToList();
+
+            return View(resultado);
+        }
+
         //public ActionResult Busca(string searchTerm)
         //{
         //    // Consulta no banco de dados com base no termo de pesquisa
@@ -70,7 +77,33 @@ namespace ConecteDoe.WebApp.Controllers
             return View("Index", usuarioResults);
         }
 
+        public ActionResult BuscaInstituicao(string searchTerm)
+        {
+            // Consulta no banco de dados com base no termo de pesquisa
+            var results = db.Instituicao
+                .Where(m => m.RazaoSocial.Contains(searchTerm))
+                .ToList();
 
+            var pesquisaModelResults = results.Select(result => new PesquisaModelInstituicao
+            {
+                InstituicaoId = result.InstituicaoId,
+                RazaoSocial = result.RazaoSocial,
+                CNPJ = result.CNPJ,
+                Telefone = result.Telefone,
+                Email = result.Email
+            }).ToList();
+
+            var usuarioResults = results.Select(result => new Instituicao
+            {
+                InstituicaoId = result.InstituicaoId,
+                RazaoSocial = result.RazaoSocial,
+                CNPJ = result.CNPJ,
+                Telefone = result.Telefone,
+                Email = result.Email
+            }).ToList();
+
+            return View("IndexInstituicao", usuarioResults);
+        }
 
     }
 }

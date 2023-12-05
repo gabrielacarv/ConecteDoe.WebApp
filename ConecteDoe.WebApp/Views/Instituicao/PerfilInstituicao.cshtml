@@ -21,8 +21,8 @@
     <!--
       - custom js link
     -->
-    <script src="~/js/PerfilUsuario.js"></script>
     <link rel="stylesheet" href="~/css/PerfilInstituicao.css" asp-append-version="true" />
+    <script src="~/js/CadastrarInstituicao.js" asp-append-version="true"></script>
 
     <!--
       - google font link
@@ -31,6 +31,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -50,11 +51,11 @@
                 <nav class="navbar" data-navbar>
                     <ul class="navbar-list">
                         <li class="nav-item">
-                            <a href="#home" class="nav-link">Início</a>
+                            <a href="javascript:void(0);" onclick="goBack()" class="nav-link">Início</a>
                         </li>
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a href="#about" class="nav-link">Instituições</a>
-                        </li>
+                        </li>*@
 
                         <li  class="nav-item">
                             <a asp-controller="Logar" asp-action="Logout">
@@ -91,31 +92,31 @@
                     <svg xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" /></svg>
                 </div>
                 <div class="container-editar">
-                    <button type="button" id="editarButton2">Editar</button>
+                    <button type="button" id="editarButton1">Editar</button>
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" /></svg>
                     @*<input type="button" id="editarButton" value="Editar" />*@
                     
                 </div>
                 <div class="signin-signup">
-                    <form asp-controller="" asp-action="" method="POST" class="sign-up-form">
+                    <form asp-controller="Instituicao" asp-action="SalvarEdicao" method="POST" class="sign-up-form">
                         <div>
-                            <h3 class="">Informações Pessoais</h3>
+                            <h3 class="">Informações Institucional</h3>
                             <div class="infoPessoal">
-                                <label>Nome</label>
+                                <label>Razão Social</label>
                                 <div class="input-field">                           
-                                    <input type="text" asp-for="Instituicao.RazaoSocial" readonly />
+                                    <input type="text" asp-for="Instituicao.RazaoSocial" readonly required />
                                 </div>
-                                <label>Data de criação</label>
+                                @*<label>Data de criação</label>*@
                                 @*<div class="input-field">
                                     <input type="text" asp-for="DadosInstituicao.DataCriacao" readonly value="@Model.DadosInstituicao.DataCriacao.ToString("dd/MM/yyyy")" />
                                 </div>*@
-                                <label>CPF</label>
+                                <label>CNPJ</label>
                                 <div class="input-field">
-                                    <input type="text" asp-for="Instituicao.CNPJ" readonly />
+                                    <input type="text" id="cnpj" asp-for="Instituicao.CNPJ" readonly required />
                                 </div>
                                 <label>Telefone</label>
                                 <div class="input-field">
-                                    <input type="text" asp-for="Instituicao.Telefone" readonly />
+                                    <input type="text" id="telefone" asp-for="Instituicao.Telefone" readonly required />
                                 </div>
                             </div>
                         </div>
@@ -124,27 +125,27 @@
                             <div class="enderecoDados">
                                 <label>Rua</label>
                                 <div class="input-field">
-                                    <input type="text"  asp-for="Endereco.Logradouro" readonly />
+                                    <input type="text" asp-for="Endereco.Logradouro" readonly required />
                                 </div>
                                 <label>Número</label>
                                 <div class="input-field">
-                                    <input type="text"  asp-for="Endereco.Numero" readonly />
+                                    <input type="text" asp-for="Endereco.Numero" readonly required />
                                 </div>
                                 <label>CEP</label>
                                 <div class="input-field">
-                                    <input type="text"  asp-for="Endereco.CEP" readonly />
+                                    <input type="text" id="cep" asp-for="Endereco.CEP" readonly required />
                                 </div>
                                 <label>Bairro</label>
                                 <div class="input-field">
-                                    <input type="text"  asp-for="Endereco.Bairro" readonly />
+                                    <input type="text" asp-for="Endereco.Bairro" readonly required />
                                 </div>
                                 <label>Complemento</label>
                                 <div class="input-field">
-                                    <input type="text"  asp-for="Endereco.Complemento" readonly />
+                                    <input type="text" asp-for="Endereco.Complemento" readonly required />
                                 </div>
                                 <label>Cidade</label>
                                 <div class="input-field">
-                                    <input type="text"  asp-for="Endereco.Cidade" readonly />
+                                    <input type="text" asp-for="Endereco.Cidade" readonly required />
                                 </div>
 
                                 <label>Estado</label>
@@ -198,7 +199,7 @@
                             </div>
 
                             <div class="btn-edicao">
-                                <input type="submit" class="btn" name="salvar" value="Salvar" id="salvarButton" style="display: none;" />
+                                <input type="submit" class="btn" name="salvar" value="Salvar" id="salvarButton1" style="display: none;" />
                             </div>
 
                         </div>
@@ -209,25 +210,301 @@
             </div>
     </section>
 
+    <section>
+        <div class="container2">
+            <div class="titulo-user-perfil">
+                <h1>Informações Adicionais</h1>
+            </div>
+            <div class="forms-container">
+                <div class="container-editar">
+                    <button type="button" id="editarButton2">Editar</button>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" /></svg>
+                    @*<input type="button" id="editarButton" value="Editar" />*@
+                </div>
+                <div class="signin-signup">
+                    <form asp-controller="Instituicao" asp-action="SalvarEdicaoDados" enctype="multipart/form-data" method="POST" class="sign-up-form">
+                        <div>
+                            <div class="infoPessoal">
+                                <label>Causa</label>
+                                <div class="input-field">
+                                    <textarea asp-for="DadosInstituicao.Causa" readonly required></textarea>
+                                </div>
+                                <label>Descrição</label>
+                                <div class="input-field">
+                                    <textarea asp-for="DadosInstituicao.Descricao" readonly required></textarea>
+                                </div>
+                                <label>Coordenador</label>
+                                <div class="input-field">
+                                    <input type="text" asp-for="DadosInstituicao.Coordenador" readonly required />
+                                </div>
+                                <label>Categoria</label>
+                                <div>
+                                    <select id="categoria" asp-for="DadosInstituicao.Categoria" required>
+                                        <option disabled selected> Categoria</option>
+                                        <option value="Alimentação">Alimentação</option>
+                                        <option value="Animais">Animais</option>
+                                        <option value="Arte e cultura">Arte e cultura</option>
+                                        <option value="Assistencia Social">Assistencia Social</option>
+                                        <option value="Direitos Humanos">Direitos Humanos</option>
+                                        <option value="Educação">Educação</option>
+                                        <option value="Meio Ambiente">Meio Ambiente</option>
+                                        <option value="Saúde">Saúde</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
+                                </div>
+                                <label>Data de criação</label>
+                                <div class="input-field">
+                                    <input type="text" asp-for="DadosInstituicao.DataCriacao" readonly value="@Model.DadosInstituicao.DataCriacao.ToString("dd/MM/yyyy")" required />
+                                </div>
+                                <label>Beneficiados Ativos</label>
+                                <div class="input-field">
+                                    <input type="text" id="quantidadeCarentes" name="quantidadeCarentes" asp-for="DadosInstituicao.QuantidadeCarentes" readonly required />
+                                </div>                                                           
+                                <label>Chave-Pix</label>
+                                <div class="input-field">
+                                    <textarea asp-for="DadosInstituicao.ChavePix" readonly required></textarea>
+                                </div>
+                                <label for="imagem">Escolha uma imagem para capa do perfil:</label>
+                                <input type="file" id="imagem" name="Imagem" accept="image/*" asp-for="DadosInstituicao.Imagem" required />
+                            </div>
+                            <div class="btn-edicao">
+                                <input type="submit" class="btn" name="salvar" value="Salvar" id="salvarButton2" style="display: none;" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </section>
+
+    <!--
+      - #FOOTER
+    -->
+
+    <footer>
+
+        <div class="footer-top">
+            <div class="container">
+
+                <div class="footer-brand">
+
+                    <a href="#" class="logo">
+                        @*                        <img src="https://raw.githubusercontent.com/gabrielacarv/ConecteDoeImagens/main/LogoConecteDoe.png" width="180px" alt="ConecteDoe logo">
+                        *@
+                    </a>
+
+                    @*<p class="footer-text">Follow us on</p>
+
+                    <ul class="social-list">
+
+                    <li>
+                    <a href="https://github.com/codewithsadee" class="social-link">
+                    <ion-icon name="logo-github"></ion-icon>
+                    </a>
+                    </li>
+
+                    <li>
+                    <a href="https://instagram.com/codewithsadee" class="social-link">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                    </li>
+
+                    <li>
+                    <a href="https://youtube.com/c/codewithsadee" class="social-link">
+                    <ion-icon name="logo-youtube"></ion-icon>
+                    </a>
+                    </li>
+
+                    <li>
+                    <a href="#" class="social-link">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                    </li>
+
+                    </ul>*@
+
+                </div>
+
+                <div class="footer-link-box">
+
+                    @*<ul class="footer-link-list">
+
+                    <li>
+                    <h3 class="h4 link-title">Company</h3>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">About Us</a>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">Features</a>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">Pricing</a>
+                    </li>
+
+                    </ul>
+
+                    <ul class="footer-link-list">
+
+                    <li>
+                    <h3 class="h4 link-title">Products</h3>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">Blog</a>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">Help Center</a>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">Contact</a>
+                    </li>
+
+                    </ul>
+
+                    <ul class="footer-link-list">
+
+                    <li>
+                    <h3 class="h4 link-title">Resources</h3>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">FAQ’S</a>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">Testimonial</a>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">Terms & Conditions</a>
+                    </li>
+
+                    </ul>
+
+                    <ul class="footer-link-list">
+
+                    <li>
+                    <h3 class="h4 link-title">Relevent</h3>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">Why</a>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">Products</a>
+                    </li>
+
+                    <li>
+                    <a href="#" class="footer-link">Customers</a>
+                    </li>
+
+                    </ul>*@
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">
+                &copy; 2023 <a href="#">@@conectedoe</a> All right reserved
+            </p>
+        </div>
+
+    </footer>
+
     <script>
         $(document).ready(function () {
             let isEditing = false;
 
-            $('#editarButton2').click(function () {
+            $('#editarButton1').click(function () {
                 if (isEditing) {
                     // Se o usuário estava editando e clicou novamente, cancelar a ação.
                     $('input[readonly]').prop('readonly', true);
                     $(this).text("Editar");
-                    $('#salvarButton').hide();
+                    $('#salvarButton1').hide();
                 } else {
                     // Se o usuário não estava editando e clicou para editar, permitir a edição.
                     $('input[readonly]').prop('readonly', false);
                     $(this).text("Cancelar");
-                    $('#salvarButton').show();
+                    $('#salvarButton1').show();
                 }
 
                 isEditing = !isEditing;
             });
+        });
+
+        $(document).ready(function () {
+            let isEditing2 = false;
+
+            $('#editarButton2').click(function () {
+                if (isEditing2) {
+                    // Se o usuário estava editando e clicou novamente, cancelar a ação.
+                    $('input[readonly], textarea[readonly]').prop('readonly', true);
+                    $(this).text("Editar");
+                    $('#salvarButton2').hide();
+                } else {
+                    // Se o usuário não estava editando e clicou para editar, permitir a edição.
+                    $('input[readonly], textarea[readonly]').prop('readonly', false);
+                    $(this).text("Cancelar");
+                    $('#salvarButton2').show();
+                }
+
+                isEditing2 = !isEditing2;
+            });
+        });
+
+
+
+        $(document).ready(function () {
+            // ...
+
+            // Aplica a máscara para o campo de telefone
+            $('#telefone').mask('(00) 00000-0000');
+
+            // Aplica a máscara para o campo de CEP
+            $('#cep').mask('00000-000');
+
+            // Aplica a máscara para o campo de CNPJ
+            $('#cnpj').mask('00.000.000/0000-00');
+
+            // ...
+        });
+
+
+        const inputFile = document.querySelector("#picture__input");
+        const pictureImage = document.querySelector(".picture__image");
+        const pictureImageTxt = "Choose an image";
+        pictureImage.innerHTML = pictureImageTxt;
+
+        inputFile.addEventListener("change", function (e) {
+            const inputTarget = e.target;
+            const file = inputTarget.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.addEventListener("load", function (e) {
+                    const readerTarget = e.target;
+
+                    const img = document.createElement("img");
+                    img.src = readerTarget.result;
+                    img.classList.add("picture__img");
+
+                    pictureImage.innerHTML = "";
+                    pictureImage.appendChild(img);
+                });
+
+                reader.readAsDataURL(file);
+            } else {
+                pictureImage.innerHTML = pictureImageTxt;
+            }
         });
     </script>
 </body>

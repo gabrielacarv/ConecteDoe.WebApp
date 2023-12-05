@@ -127,8 +127,10 @@ body {
 .container2 {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: flex-end;
     flex-direction: row-reverse;
+    gap: 50px;
 }
 
 .h1,
@@ -228,7 +230,7 @@ header {
     }
 
 .navbar-list {
-    padding: 10px;
+    padding: 30px;
 }
 
 .nav-item:not(:last-child) {
@@ -273,13 +275,13 @@ header {
 
 .hero-content {
     text-align: center;
-    top: 20px;
-    padding: 60px 0em 0 0em;
+    top: 0px;
+    padding: 0px 0em 0 0em;
 }
 
 .hero-title,
 .hero-text {
-    margin-bottom: 60px;
+    margin-bottom: 0px;
 }
 
 .hero-text {
@@ -312,10 +314,15 @@ header {
     z-index: -1;
 }
 
+.animated {
+    width: 600px;
+    top: -250px;
+    right: 20%;
+}
+
 /*-----------------------------------*\
      * #GO TO TOP
     \*-----------------------------------*/
-
 .go-top {
     position: fixed;
     bottom: 30px;
@@ -388,7 +395,7 @@ header {
        */
 
     .hero {
-        padding: 140px 0 160px;
+        padding: 110px 0 10px;
     }
 
     .shape-content {
@@ -621,13 +628,13 @@ header {
     .navbar-list {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 30px;
         margin-right: 20px;
     }
 
     .nav-link {
         opacity: 1;
-        padding: 0 15px;
+        padding: 0 0px;
     }
 
     .navbar .btn-primary {

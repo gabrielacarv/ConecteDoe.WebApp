@@ -119,18 +119,16 @@ namespace ConecteDoe.WebApp.Controllers
                 }
                 else
                 {
-                    var admin = await db.Instituicao.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
+                    var admin = await db.Admin.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
 
                     if (admin != null)
                     {
                         // Autenticação bem-sucedida
                         var claims = new List<Claim>
                             {
-                                new Claim(ClaimTypes.Name, admin.RazaoSocial), // Substitua com o campo de nome real do usuário
                                 new Claim(ClaimTypes.Email, admin.Email), // Substitua com o campo de email do usuário
                                 // Você pode adicionar outras informações do usuário, se necessário
-                                new Claim(ClaimTypes.NameIdentifier, admin.InstituicaoId.ToString())
-
+                                new Claim(ClaimTypes.NameIdentifier, admin.AdminId.ToString())
                             };
 
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -141,13 +139,16 @@ namespace ConecteDoe.WebApp.Controllers
 
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                        return RedirectToAction("Index", "Plataforma"); // Redirecione para a página desejada após o login
+                        return RedirectToAction("IndexAdmin", "Plataforma"); // Redirecione para a página desejada após o login
                     }
                     else
                     {
                         // Falha na autenticação
-                        ModelState.AddModelError(string.Empty, "Nome de usuário ou senha inválidos.");
-                        return View();
+                        //ModelState.AddModelError(string.Empty, "Nome de usuário ou senha inválidos.");
+                        //return RedirectToAction("Index", "Logar");
+
+                        TempData["ErrorMessage"] = "Nome de usuário ou senha inválidos.";
+                        return RedirectToAction("Index");
                     }
                 }
             }
@@ -196,6 +197,13 @@ namespace ConecteDoe.WebApp.Controllers
 
         public IActionResult Index()
         {
+            string errorMessage = TempData["ErrorMessage"] as string;
+
+            // Se houver uma mensagem de erro, você pode passá-la para a view
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                ViewBag.ErrorMessage = errorMessage;
+            }
             return View();
         }
     

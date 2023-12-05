@@ -380,7 +380,105 @@ td button {
         pointer-events: all;
     }
 
+/*-----------------------------------*\
+     * #BUSCAR
+    \*-----------------------------------*/
+.container-busca {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
 
+.total-arrecadado{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    gap: 10px;
+    justify-content: end;
+    padding-right: 20px;
+}
+
+/*-----------------------------------*\
+     * #FOOTER
+    \*-----------------------------------*/
+
+footer {
+    background: white;
+    /*background: var(--white-2);*/
+}
+
+.footer-top {
+    padding: 80px 0 50px;
+}
+
+.footer-brand {
+    margin-bottom: 20px;
+}
+
+footer .logo {
+    margin-bottom: 30px;
+}
+
+.footer-text {
+    color: var(--rythm);
+    font-size: var(--fs-6);
+    margin-bottom: 20px;
+}
+
+.social-list {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.social-link {
+    color: var(--rythm);
+    font-size: var(--fs-4);
+    margin-bottom: 10px;
+}
+
+    .social-link:is(:hover, :focus) {
+        color: var(--french-rose);
+    }
+
+.footer-link-list:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+.footer-link-list .link-title {
+    margin-bottom: 15px;
+}
+
+.footer-link {
+    color: var(--cool-gray);
+    font-size: var(--fs-6);
+    margin-bottom: 10px;
+    max-width: 150px;
+}
+
+    .footer-link:is(:hover, :focus) {
+        color: var(--french-rose);
+    }
+
+.footer-bottom {
+    padding: 20px 15px;
+    border-top: 1px solid hsla(0, 0%, 18%, 0.2);
+}
+
+.copyright {
+    color: var(--cool-gray);
+    text-align: center;
+    font-size: var(--fs-6);
+}
+
+    .copyright a {
+        display: inline-block;
+        color: var(--cool-gray);
+    }
+
+        .copyright a:is(:hover, :focus) {
+            color: var(--french-rose);
+        }
 
 /*-----------------------------------*\
      * #RESPONSIVE

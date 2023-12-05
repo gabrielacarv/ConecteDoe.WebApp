@@ -24,13 +24,19 @@
                             <a href="#home" class="nav-link">Início</a>
                         </li>*@
                         <li class="nav-item">
-                            <a asp-controller="Plataforma" asp-action="FeedInstituicao" class="nav-link">Instituições</a>
+                            <a asp-controller="Plataforma" asp-action="FeedInstituicao" class="nav-link">Feed Instituições</a>
                         </li>
-                         <li class="nav-item">
-                            <a asp-controller="Doacao" asp-action="Index" class="nav-link">Relatório Arrecadação</a>
-                        </li> 
                         <li class="nav-item">
-                            <a asp-controller="Instituicao" asp-action="PerfilInstituicao" class="logo">
+                            <a asp-controller="Administracao" asp-action="Index" class="nav-link">Doadores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Administracao" asp-action="IndexInstituicao" class="nav-link">Instituições</a>
+                        </li>
+                        @* <li class="nav-item">
+                        <a href="#features" class="nav-link"></a>
+                        </li> *@
+                        @*<li class="nav-item">
+                            <a asp-controller="Usuario" asp-action="PerfilUsuario" class="logo">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512">
                                     <!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <style>                                        svg {
@@ -39,8 +45,7 @@
                                     <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
                                 </svg>
                             </a>
-                        </li>
-
+                        </li>*@
                         <li class="nav-item">
                             <a asp-controller="Logar" asp-action="Logout">
                                 <svg id="IconSair" xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 512 512">
@@ -72,8 +77,8 @@
 
 
                     <div class="hero-content">
-
-                        <p class="hero-text"> Bem-Vindo!</p>
+                        <p class="hero-text"> Admin</p>
+                        <p class="hero-text"> Bem-Vindo!</p>                    
                         <h1 class="h1 hero-title">Conecte Doe</h1>
 
                         @*<button class="btn btn-primary">Participar</button>*@

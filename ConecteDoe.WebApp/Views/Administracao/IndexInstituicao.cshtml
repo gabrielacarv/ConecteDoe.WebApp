@@ -1,6 +1,6 @@
 ﻿@using ConecteDoe.Dominio.Entities
 
-@model IEnumerable<Usuario>
+@model IEnumerable<Instituicao>
 
 
 <head>
@@ -74,9 +74,9 @@
 
 
     <section>
-        <div class="container">         
-                  
-            @using (Html.BeginForm("Busca", "Administracao", FormMethod.Get))
+        <div class="container">
+
+            @using (Html.BeginForm("BuscaInstituicao", "Administracao", FormMethod.Get))
             {
                 <div class="container-busca">
                     <input type="text" name="searchTerm" placeholder="Pesquisa" />
@@ -90,12 +90,10 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nome</th>
-                                <th>Data de Nasc.</th>
-                                <th>Sexo</th>
-                                <th>CPF</th>
+                                <th>Razão Social</th>
+                                <th>CNPJ</th>
                                 <th>Telefone</th>
-                                <th>Email</th>
+                                <th>E-mail</th>
                                 <th>Ação</th>
                             </tr>
                         </thead>
@@ -104,19 +102,13 @@
                             {
                                 <tr>
                                     <td class="centraliza-coluna">
-                                        @item.UsuarioId
+                                        @item.InstituicaoId
                                     </td>
                                     <td class="centraliza-coluna">
-                                        @item.Nome
+                                        @item.RazaoSocial
                                     </td>
                                     <td class="centraliza-coluna">
-                                        @item.DataNascimento.ToShortDateString()
-                                    </td>
-                                    <td class="centraliza-coluna">
-                                        @item.Sexo
-                                    </td>
-                                    <td class="centraliza-coluna">
-                                        @item.CPF
+                                        @item.CNPJ
                                     </td>
                                     <td class="centraliza-coluna">
                                         @item.Telefone
@@ -126,9 +118,9 @@
                                     </td>
                                     <td class="centraliza-coluna">
                                         @*<a class="btn btn-danger btn-xs" asp-action="Excluir" asp-controller="Funcionario" asp-route-funcionarioId="@item.UsuarioId">
-                                            <i class="fas fa-solid fa-trash" style="color: #ed1d1d;"></i>
-                                        </a>*@
-                                        <a asp-action="Excluir" asp-controller="Usuario" asp-route-usuarioId="@item.UsuarioId">
+                                    <i class="fas fa-solid fa-trash" style="color: #ed1d1d;"></i>
+                                    </a>*@
+                                        <a asp-action="Excluir" asp-controller="Usuario" asp-route-usuarioId="@item.InstituicaoId">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
                                                 <!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                                 <style>
@@ -146,7 +138,7 @@
                 </div>
             </div>
     </section>
-    
+
     <script>
         $(document).ready(function () {
             $('form').on('submit', function (event) {

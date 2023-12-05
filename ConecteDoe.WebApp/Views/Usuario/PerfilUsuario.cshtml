@@ -50,11 +50,11 @@
                 <nav class="navbar" data-navbar>
                     <ul class="navbar-list">
                         <li class="nav-item">
-                            <a asp-controller="Plataforma" asp-action="Index" class="nav-link">Início</a>
+                            <a href="javascript:void(0);" onclick="goBack()" class="nav-link">Início</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#about" class="nav-link">Instituições</a>
-                        </li>
+                        @*<li class="nav-item">
+                            <a asp-controller="Plataforma" asp-action="FeedInstituicao" class="nav-link">Instituições</a>
+                        </li>*@
 
                         <li  class="nav-item">
                             <a asp-controller="Logar" asp-action="Logout">
@@ -201,7 +201,7 @@
                                 </div>
                                 <label>Senha</label>
                                 <div class="input-field">
-                                    <input type="password" required asp-for="Usuario.Senha" readonly />
+                                    <input type="text" required asp-for="Usuario.Senha" readonly />
                                 </div>                                
                             </div>
 
@@ -353,7 +353,7 @@
 
         <div class="footer-bottom">
             <p class="copyright">
-                &copy; 2022 <a href="#">@@codewithsadee</a> All right reserved
+                &copy; 2023 <a href="#">@@conectedoe</a> All right reserved
             </p>
         </div>
 
@@ -379,5 +379,9 @@
                 isEditing = !isEditing;
             });
         });
+
+        function goBack() {
+            window.history.back();
+        }
     </script>
 </body>

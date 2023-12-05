@@ -11,6 +11,6 @@
         public string Descricao { get; set; }
         public string ChavePix { get; set; }
         public Instituicao Instituicao { get; set; }
-        public byte[] Imagem { get; set; }
+        public byte[]? Imagem { get; set; }
     }
 }

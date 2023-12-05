@@ -155,6 +155,59 @@ function validaCPF(cpf) {
     return true; // CPF válido
 }
 
+// MASCARA E VALIDACAO CNPJ
+function mascaraCNPJ(cnpj) {
+    cnpj = cnpj.replace(/\D/g, ""); // Remove tudo o que não é dígito
+    cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2"); // Coloca ponto entre o segundo e o terceiro dígitos
+    cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3"); // Coloca ponto entre o quinto e o sexto dígitos
+    cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2"); // Coloca barra entre o oitavo e o nono dígitos
+    cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2"); // Coloca hífen entre o décimo segundo e o décimo terceiro dígitos
+    return cnpj;
+}
+
+function validaCNPJ(cnpj) {
+    cnpj = cnpj.replace(/\D/g, ""); // Remove tudo o que não é dígito
+
+    if (cnpj.length !== 14 || /^(\d)\1{13}$/.test(cnpj)) {
+        return false; // CNPJ inválido
+    }
+
+    let size = cnpj.length - 2;
+    let numbers = cnpj.substring(0, size);
+    const digits = cnpj.substring(size);
+    let sum = 0;
+    let pos = size - 7;
+
+    for (let i = size; i >= 1; i--) {
+        sum += parseInt(numbers.charAt(size - i)) * pos--;
+        if (pos < 2) {
+            pos = 9;
+        }
+    }
+
+    let result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+
+    if (result !== parseInt(digits.charAt(0))) {
+        return false; // CNPJ inválido
+    }
+
+    size = size + 1;
+    numbers = cnpj.substring(0, size);
+    sum = 0;
+    pos = size - 7;
+
+    for (let i = size; i >= 1; i--) {
+        sum += parseInt(numbers.charAt(size - i)) * pos--;
+        if (pos < 2) {
+            pos = 9;
+        }
+    }
+
+    result = sum % 11 < 2 ? 0 : 11 - sum % 11;
+
+    return result === parseInt(digits.charAt(1)); // CNPJ válido
+}
+
 // Example of how to use the CPF mask and validation
 window.onload = function () {
     id('telefone').onkeyup = function () {
@@ -179,6 +232,24 @@ window.onload = function () {
             Swal.fire({
                 title: 'Erro!',
                 text: "CPF inválido. Por favor, digite um CPF válido.",
+                icon: 'error',
+                confirmButtonColor: '#abed1a',
+                confirmButtonText: 'Ok'
+            })
+            this.value = "";
+        }
+    }
+
+    id('cnpj').onkeyup = function () {
+        this.value = mascaraCNPJ(this.value);
+    }
+
+    id('cnpj').onblur = function () {
+        if (!validaCNPJ(this.value)) {
+            /*alert("CNPJ inválido. Por favor, digite um CNPJ válido.");*/
+            Swal.fire({
+                title: 'Erro!',
+                text: "CNPJ inválido. Por favor, digite um CNPJ válido.",
                 icon: 'error',
                 confirmButtonColor: '#abed1a',
                 confirmButtonText: 'Ok'

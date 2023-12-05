@@ -1,0 +1,39 @@
+﻿@model List<PesquisaModelInstituicao>
+
+<!-- Adicione um título ou cabeçalho -->
+<h2>Resultados da Pesquisa</h2>
+
+<table class="table table-striped table-sm">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Razão Social</th>
+            <th>CNPJ</th>
+            <th>Telefone</th>
+            <th>E-mail</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="centraliza-coluna">
+                    @item.InstituicaoId
+                </td>
+                <td class="centraliza-coluna">
+                    @item.RazaoSocial
+                </td>
+                <td class="centraliza-coluna">
+                    @item.CNPJ
+                </td>
+                <td class="centraliza-coluna">
+                    @item.Telefone
+                </td>
+                <td class="centraliza-coluna">
+                    @item.Email
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
