@@ -350,6 +350,54 @@ td button {
     text-align: center;
 }
 
+.filtro-data {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 40px;
+    padding: 10px;
+}
+
+.dataInicial {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.dataFinal {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.filtro-data input{
+    width: 140px;
+}
+
+
+.btn1 {
+    font-size: var(--fs-6);
+    text-transform: uppercase;
+    font-weight: var(--fw-600);
+    padding: 1px 10px;
+    border: 1px solid;
+    border-radius: 6px;
+}
+
+.btn-filtro {
+    background: var(--bittersweet);
+    border-color: var(--bittersweet);
+    color: var(--white);
+}
+
+    .btn-filtro:is(:hover, :focus) {
+        --bittersweet: #88bd15;
+    }
+
 
 /*-----------------------------------*\
      * #GO TO TOP
@@ -388,14 +436,20 @@ td button {
     padding-bottom: 60px;
 }
 
-.total-arrecadado{
+.total-arrecadado {
     display: flex;
     flex-direction: row;
     align-content: center;
     align-items: center;
     gap: 10px;
-    justify-content: end;
+    justify-content: start;
+    padding-top: 25px;
     padding-right: 20px;
+}
+
+.container-user-perfil, .titulo-user-perfil {
+    display: flex;
+    padding: 25px;
 }
 
 /*-----------------------------------*\

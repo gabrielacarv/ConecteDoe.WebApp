@@ -76,17 +76,24 @@
     <section>
         <div class="container">
 
-            @*@using (Html.BeginForm("Busca", "Administracao", FormMethod.Get))
-            {
-            <div class="container-busca">
-            <input type="text" name="searchTerm" placeholder="Pesquisa" />
-            <button type="submit">Buscar</button>
+            <div class="titulo-user-perfil">
+                <h1>Relatório</h1>
             </div>
-            }*@
 
-            <div>
-                <h2>Relatório</h2>
+            <div class="filtro-data">
+                <div class="dataInicial">
+                    <label for="dataInicial">Data Inicial:</label>
+                    <input type="date" id="dataInicial">
+                </div>             
+                <div class="dataFinal">
+                    <label for="dataFinal">Data Final:</label>
+                    <input type="date" id="dataFinal">
+                </div>          
+                <button class="btn1 btn-filtro" onclick="filtrarPorPeriodo()">Filtrar</button>
             </div>
+            
+
+
 
             <div class="forms-container">
                 <div lass="header_fixed">
@@ -109,23 +116,8 @@
                                         @item.DataDoacao.ToShortDateString()
                                     </td>
                                     <td class="centraliza-coluna">
-                                        @item.Valor
+                                        R$ @item.Valor
                                     </td>
-                                    @*<td class="centraliza-coluna">
-                                @*<a class="btn btn-danger btn-xs" asp-action="Excluir" asp-controller="Funcionario" asp-route-funcionarioId="@item.UsuarioId">
-                                <i class="fas fa-solid fa-trash" style="color: #ed1d1d;"></i>
-                                </a>*@
-                                    @*<a asp-action="Excluir" asp-controller="Usuario" asp-route-usuarioId="@item.UsuarioId">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-                                <!--! Font Awesome Free 6.4.2 by @@fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <style>
-                                svg {
-                                fill: #ed1d1d
-                                }</style>
-                                <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-                                </svg>
-                                </a>
-                                </td>*@
                                 </tr>
                             }
                         </tbody>
@@ -135,6 +127,11 @@
             <div class="total-arrecadado">
                 <h3>Total arrecadado: </h3>
                 <p>R$ @Model.TotalAmount</p>
+            </div>
+
+            <div class="total-arrecadado-filtrado">
+                <h3>Total arrecadado (filtrado): </h3>
+                <p id="totalFiltrado">R$ 0.00</p>
             </div>
             
     </section>
@@ -283,19 +280,83 @@
     </footer>
 
     <script>
-        $(document).ready(function () {
-            $('form').on('submit', function (event) {
-                event.preventDefault(); // Evitar o envio padrão do formulário
+        //function filtrarPorPeriodo() {
+        //    var dataInicialInput = document.getElementById('dataInicial');
+        //    var dataFinalInput = document.getElementById('dataFinal');
 
-                var searchTerm = $('input[name="searchTerm"]').val();
+        //    // Verificar se as datas são válidas
+        //    if (!dataInicialInput.checkValidity() || !dataFinalInput.checkValidity()) {
+        //        alert('Por favor, insira datas válidas.');
+        //        return;
+        //    }
 
-                // Enviar a solicitação AJAX para buscar os resultados da pesquisa
-                $.get("/Administracao/Busca", { searchTerm: searchTerm }, function (data) {
-                    // Atualizar a tabela com os resultados da pesquisa
-                    $("#tabelaResultados tbody").html(data);
-                });
+        //    var dataInicial = new Date(dataInicialInput.value);
+        //    var dataFinal = new Date(dataFinalInput.value);
+        //    var rows = document.querySelectorAll('#tabelaResultados tbody tr');
+
+        //    rows.forEach(function (row) {
+        //        var rowData = new Date(parseDataBr(row.cells[1].textContent)); // Função para ajustar o formato da data
+
+        //        if (
+        //            (isNaN(dataInicial.getTime()) || rowData >= dataInicial) &&
+        //            (isNaN(dataFinal.getTime()) || rowData <= dataFinal)
+        //        ) {
+        //            row.style.display = '';
+        //        } else {
+        //            row.style.display = 'none';
+        //        }
+        //    });
+        //}
+
+        //// Função para ajustar o formato da data de dd/mm/yyyy para mm/dd/yyyy
+        //function parseDataBr(data) {
+        //    var partes = data.split("/");
+        //    return partes[1] + "/" + partes[0] + "/" + partes[2];
+        //}
+
+        function filtrarPorPeriodo() {
+            var dataInicialInput = document.getElementById('dataInicial');
+            var dataFinalInput = document.getElementById('dataFinal');
+
+            // Verificar se as datas são válidas
+            if (!dataInicialInput.checkValidity() || !dataFinalInput.checkValidity()) {
+                alert('Por favor, insira datas válidas.');
+                return;
+            }
+
+            var dataInicial = new Date(dataInicialInput.value);
+            var dataFinal = new Date(dataFinalInput.value);
+            var rows = document.querySelectorAll('#tabelaResultados tbody tr');
+
+            var totalFiltrado = 0; // Novo total para linhas filtradas
+
+            rows.forEach(function (row) {
+                var rowData = new Date(parseDataBr(row.cells[1].textContent));
+
+                if (
+                    (isNaN(dataInicial.getTime()) || rowData >= dataInicial) &&
+                    (isNaN(dataFinal.getTime()) || rowData <= dataFinal)
+                ) {
+                    row.style.display = '';
+                    totalFiltrado += parseFloat(row.cells[2].textContent.replace('R$', '').trim());
+                } else {
+                    row.style.display = 'none';
+                }
             });
-        });
+
+            // Atualizar o valor total filtrado na página
+            document.getElementById('totalFiltrado').textContent = 'R$ ' + totalFiltrado.toFixed(2);
+        }
+
+        // Função para ajustar o formato da data de dd/mm/yyyy para mm/dd/yyyy
+        function parseDataBr(data) {
+            var partes = data.split("/");
+            return partes[1] + "/" + partes[0] + "/" + partes[2];
+        }
+
+
     </script>
+
+
 
 </body>

@@ -22,27 +22,6 @@ namespace ConecteDoe.WebApp.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var id = Convert.ToInt32(userId);
-            // Remova a lógica de obter a instituição pelo e-mail, pois agora usaremos o ID fornecido como parâmetro
-            //var instituicao = db.Instituicao.FirstOrDefault(u => u.InstituicaoId == id);
-
-            //var doacao = db.Doacao.FirstOrDefault(u => u.InstituicaoId == id);
-
-            // Verifique se a instituição foi encontrada
-            //if (instituicao == null)
-            //{
-            //    return NotFound(); // Retorna 404 se a instituição não for encontrada
-            //}
-
-            // Agora, você pode continuar com a lógica para obter outras informações
-            //var endereco = db.Endereco.FirstOrDefault(e => e.EnderecoId == instituicao.EnderecoId);
-            //var dadosInstituicao = db.DadosInstituicao.FirstOrDefault(d => d.InstituicaoId == instituicao.InstituicaoId);
-
-            //var viewModel = new PerfilInstituicaoViewModel
-            //{
-            //    Instituicao = instituicao,
-            //    DadosInstituicao = dadosInstituicao,
-            //    Endereco = endereco
-            //};
 
             var doacoesDaInstituicao = db.Doacao.ToList().Where(u => u.InstituicaoId == id);
             decimal totalAmount = db.Doacao.Sum(t => t.Valor);
@@ -55,6 +34,34 @@ namespace ConecteDoe.WebApp.Controllers
 
             return View(viewModel);
         }
+
+        //[HttpGet]
+
+        //public ActionResult FiltrarPorData(DateTime? startDate, DateTime? endDate)
+        //{
+        //    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //    var id = Convert.ToInt32(userId);
+
+        //    // Verificar se as datas foram fornecidas
+        //    if (startDate.HasValue && endDate.HasValue)
+        //    {
+        //        var resultadoFiltrado = db.Doacao
+        //            .Where(u => u.InstituicaoId == id && u.DataDoacao >= startDate && u.DataDoacao <= endDate)
+        //            .ToList();
+
+        //        // Restante do código para enviar o modelo para a View
+
+        //        return PartialView("RelatorioDoacaoPartial", resultadoFiltrado);
+
+        //    }
+        //    else
+        //    {
+        //        // Se as datas não foram fornecidas, retornar a lista sem filtro
+        //        var resultado = db.Doacao.Where(u => u.InstituicaoId == id).ToList();
+        //        return View("Index", resultado);
+        //    }
+        //}
+
 
     }
 }
