@@ -447,6 +447,17 @@ td button {
     padding-right: 20px;
 }
 
+.total-arrecadado-filtrado {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    gap: 10px;
+    justify-content: start;
+    padding-top: 25px;
+    padding-right: 20px;
+}
+
 .container-user-perfil, .titulo-user-perfil {
     display: flex;
     padding: 25px;

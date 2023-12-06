@@ -6,5 +6,6 @@ namespace ConecteDoe.WebApp.Models
     {
         public IEnumerable<Doacao> DoacoesDaInstituicao { get; set; }
         public decimal TotalAmount { get; set; }
+        public IEnumerable<Usuario> Doadores { get; set; }
     }
 }

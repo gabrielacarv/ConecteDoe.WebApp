@@ -18,22 +18,51 @@ namespace ConecteDoe.WebApp.Controllers
             return View();
         }
 
+        //public IActionResult Index()
+        //{
+        //    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //    var id = Convert.ToInt32(userId);
+
+        //    var doacoesDaInstituicao = db.Doacao.ToList().Where(u => u.InstituicaoId == id);
+        //    decimal totalAmount = db.Doacao.Sum(t => t.Valor);
+
+        //    var doadores = db.Usuario.ToList().Where(u => u.UsuarioId == id);
+
+        //    var viewModel = new DoacaoViewModel
+        //    {
+        //        DoacoesDaInstituicao = doacoesDaInstituicao,
+        //        TotalAmount = totalAmount
+        //    };
+
+        //    return View(viewModel);
+        //}
+
         public IActionResult Index()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var id = Convert.ToInt32(userId);
 
-            var doacoesDaInstituicao = db.Doacao.ToList().Where(u => u.InstituicaoId == id);
-            decimal totalAmount = db.Doacao.Sum(t => t.Valor);
+            var doacoesDaInstituicao = db.Doacao
+                .Include(d => d.Usuario) // Inclua a tabela do doador (assumindo que sua propriedade se chama Doador)
+                .Where(u => u.InstituicaoId == id)
+                .ToList();
+
+            decimal totalAmount = doacoesDaInstituicao.Sum(t => t.Valor);
+
+            var doadores = db.Usuario
+                .Where(u => u.UsuarioId == id)
+                .ToList();
 
             var viewModel = new DoacaoViewModel
             {
                 DoacoesDaInstituicao = doacoesDaInstituicao,
-                TotalAmount = totalAmount
+                TotalAmount = totalAmount,
+                Doadores = doadores
             };
 
             return View(viewModel);
         }
+
 
         //[HttpGet]
 

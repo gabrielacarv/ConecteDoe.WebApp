@@ -240,7 +240,7 @@
                                 <label>Categoria</label>
                                 <div>
                                     <select id="categoria" asp-for="DadosInstituicao.Categoria" required>
-                                        <option disabled selected> Categoria</option>
+                                        <option disabled selected> Selecione</option>
                                         <option value="Alimentação">Alimentação</option>
                                         <option value="Animais">Animais</option>
                                         <option value="Arte e cultura">Arte e cultura</option>
@@ -258,7 +258,7 @@
                                 </div>
                                 <label>Beneficiados Ativos</label>
                                 <div class="input-field">
-                                    <input type="text" id="quantidadeCarentes" name="quantidadeCarentes" asp-for="DadosInstituicao.QuantidadeCarentes" readonly required />
+                                    <input type="text" id="quantidadeCarentes" asp-for="DadosInstituicao.QuantidadeCarentes" readonly required />
                                 </div>                                                           
                                 <label>Chave-Pix</label>
                                 <div class="input-field">

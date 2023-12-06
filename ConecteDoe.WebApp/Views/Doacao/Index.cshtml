@@ -110,7 +110,7 @@
                             {
                                 <tr>
                                     <td class="centraliza-coluna">
-                                        @item.DoadorId
+                                        @item.Usuario.Nome
                                     </td>
                                     <td class="centraliza-coluna">
                                         @item.DataDoacao.ToShortDateString()
@@ -129,7 +129,7 @@
                 <p>R$ @Model.TotalAmount</p>
             </div>
 
-            <div class="total-arrecadado-filtrado">
+            <div class="total-arrecadado-filtrado" style="display: none;">
                 <h3>Total arrecadado (filtrado): </h3>
                 <p id="totalFiltrado">R$ 0.00</p>
             </div>
@@ -317,6 +317,7 @@
         function filtrarPorPeriodo() {
             var dataInicialInput = document.getElementById('dataInicial');
             var dataFinalInput = document.getElementById('dataFinal');
+            var totalFiltradoDiv = document.querySelector('.total-arrecadado-filtrado');
 
             // Verificar se as datas são válidas
             if (!dataInicialInput.checkValidity() || !dataFinalInput.checkValidity()) {
@@ -338,11 +339,14 @@
                     (isNaN(dataFinal.getTime()) || rowData <= dataFinal)
                 ) {
                     row.style.display = '';
-                    totalFiltrado += parseFloat(row.cells[2].textContent.replace('R$', '').trim());
+                    totalFiltrado += parseFloat(row.cells[2].textContent.replace('R$', '').replace(',', '.').trim());
                 } else {
                     row.style.display = 'none';
                 }
             });
+
+            // Mostrar ou ocultar o bloco de valor total filtrado conforme necessário
+            totalFiltradoDiv.style.display = totalFiltrado > 0 ? '' : 'none';
 
             // Atualizar o valor total filtrado na página
             document.getElementById('totalFiltrado').textContent = 'R$ ' + totalFiltrado.toFixed(2);
@@ -353,6 +357,8 @@
             var partes = data.split("/");
             return partes[1] + "/" + partes[0] + "/" + partes[2];
         }
+
+
 
 
     </script>

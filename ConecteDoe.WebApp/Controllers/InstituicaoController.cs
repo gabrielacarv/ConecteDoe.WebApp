@@ -205,13 +205,17 @@ namespace ConecteDoe.WebApp.Controllers
 
                 var Id = int.Parse(userId);
 
-                // Obtenha o registro existente do banco de dados, incluindo suas propriedades relacionadas (Endereco)
                 var instituicaoExistente = db.Instituicao
                     .Include(u => u.DadosInstituicao)
                     .FirstOrDefault(u => u.InstituicaoId == Id);
 
                 if (instituicaoExistente != null)
                 {
+                    if (instituicaoExistente.DadosInstituicao == null)
+                    {
+                        instituicaoExistente.DadosInstituicao = new DadosInstituicao();
+                    }
+
                     instituicaoExistente.DadosInstituicao.InstituicaoId = instituicaoExistente.InstituicaoId;
                     instituicaoExistente.DadosInstituicao.Coordenador = viewModel.DadosInstituicao.Coordenador;
                     instituicaoExistente.DadosInstituicao.Categoria = viewModel.DadosInstituicao.Categoria;
@@ -232,6 +236,10 @@ namespace ConecteDoe.WebApp.Controllers
 
                     instituicaoExistente.DadosInstituicao.Imagem = viewModel.DadosInstituicao.Imagem;
 
+                   
+                    db.DadosInstituicao.Add(instituicaoExistente.DadosInstituicao);
+                    
+
                     db.SaveChanges();
 
                     return RedirectToAction("PerfilInstituicao");
@@ -240,6 +248,53 @@ namespace ConecteDoe.WebApp.Controllers
 
             return View("PerfilInstituicao", viewModel);
         }
+
+
+        //[HttpPost]
+        //public IActionResult SalvarEdicaoDados(PerfilInstituicaoViewModel viewModel, IFormFile imagem)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        var username = User.Identity.Name;
+        //        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        //        var Id = int.Parse(userId);
+
+        //        // Obtenha o registro existente do banco de dados, incluindo suas propriedades relacionadas (Endereco)
+        //        var instituicaoExistente = db.Instituicao
+        //            .Include(u => u.DadosInstituicao)
+        //            .FirstOrDefault(u => u.InstituicaoId == Id);
+
+        //        if (instituicaoExistente != null)
+        //        {
+        //            instituicaoExistente.DadosInstituicao.InstituicaoId = instituicaoExistente.InstituicaoId;
+        //            instituicaoExistente.DadosInstituicao.Coordenador = viewModel.DadosInstituicao.Coordenador;
+        //            instituicaoExistente.DadosInstituicao.Categoria = viewModel.DadosInstituicao.Categoria;
+        //            instituicaoExistente.DadosInstituicao.DataCriacao = viewModel.DadosInstituicao.DataCriacao;
+        //            instituicaoExistente.DadosInstituicao.QuantidadeCarentes = viewModel.DadosInstituicao.QuantidadeCarentes;
+        //            instituicaoExistente.DadosInstituicao.Causa = viewModel.DadosInstituicao.Causa;
+        //            instituicaoExistente.DadosInstituicao.Descricao = viewModel.DadosInstituicao.Descricao;
+        //            instituicaoExistente.DadosInstituicao.ChavePix = viewModel.DadosInstituicao.ChavePix;
+
+        //            if (imagem != null && imagem.Length > 0)
+        //            {
+        //                using (var ms = new MemoryStream())
+        //                {
+        //                    imagem.CopyTo(ms);
+        //                    viewModel.DadosInstituicao.Imagem = ms.ToArray();
+        //                }
+        //            }
+
+        //            instituicaoExistente.DadosInstituicao.Imagem = viewModel.DadosInstituicao.Imagem;
+
+        //            db.SaveChanges();
+
+        //            return RedirectToAction("PerfilInstituicao");
+        //        }
+        //    }
+
+        //    return View("PerfilInstituicao", viewModel);
+        //}
 
         //[HttpPost]
         //public IActionResult SalvarEdicaoDados(PerfilInstituicaoViewModel viewModel)
